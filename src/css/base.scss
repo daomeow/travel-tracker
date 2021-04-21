@@ -1,7 +1,223 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
-
 body {
-  background: $primary-background;
+  margin: 0;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* ***** Mobile View ***** */ 
+@media screen and (min-device-width: 320px) {
+  header {
+    background-color: #d8e2dc;
+    margin: 0;
+    width: 40.1rem;
+  }
+  .user-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 15px 0 0;
+  }
+  
+  .lower-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .fa-user {
+    font-size: 20px;
+  }
+  
+  .user-handle {
+    font-size: 17px;
+  }
+  
+  .app-name-container {
+    display: flex;
+    flex-direction: row;
+  }
+  .app-name {
+    font-size: 30px;
+    margin-top: 5px;
+  }
+
+  .fa-pagelines {
+    font-size: 45px;
+  }
+
+  .nav-container {
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    list-style-type: none;
+    padding-left: 10px;
+    margin-top: 0;
+  }
+
+  .fa-list-ul,
+  .fa-clock {
+    padding-left: 20px;;
+  }
+
+  .nav {
+    padding-right: 35px;
+  }
+
+  /* Main Mobile */
+  main {
+    align-items: center;
+    background-color: #ffffff;
+    width: 40.1rem;
+  }
+
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cards-container {
+    padding: 0 3rem;
+    justify-items: center;
+  }
+
+  article {
+    border-radius: 1rem;
+    padding: 0 2rem;
+    margin-bottom: 15px;
+    background-color: #d8e2dc;
+    height: 40rem;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  .main-title {
+    font-size: 2rem;
+    margin: 0;
+    padding: 15px 0 15px 6px;
+  }
+  .destination {
+    font-size: 1.5rem;
+    background-color: #bfc0c0;
+    padding: 20px 0 20px 5px;
+  }
+}
+
+/* ***** Small View ***** */ 
+@media only screen and (min-width: 400px){
+  header {
+    width: 100%
+  }
+
+  .fa-user,
+  .user-handle {
+    font-size: 15px;
+  }
+
+  .nav-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+  }
+
+  .fa-list-ul,
+  .fa-clock {
+    padding-left: 0px;;
+  }
+
+  .app-name {
+    font-size: 2rem;
+  }
+
+  .fa-pagelines {
+    font-size: 60px;
+  }
+
+  /* Main Desktop */
+  main {
+    width: 100%;
+    height: 100%;
+  }
+
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, .5fr);
+    grid-gap: 10px;
+    padding: 0 10px;
+  }
+  
+  article {
+    border-radius: 1rem;
+    width: 13rem;
+    height: 20rem;
+  }
+
+  .main-title {
+    font-size: 2rem;
+    margin: 0;
+    padding: 35px 0 35px 6px;
+  }
+
+  .destination {
+    font-size: 13px;
+    padding: 10px 0 10px 5px;
+  }
+}
+
+/* ***** M View ***** */ 
+@media only screen and (min-width: 850px){
+  .nav-container {
+    display: flex;
+    flex-direction: row;
+    font-size: 23px;
+  }
+  
+  .cards-container {
+      display: grid;
+      grid-template-columns: repeat(3, .33fr);
+      grid-gap: 10px;
+  }
+
+  .fa-list-ul,
+  .fa-clock {
+    padding-left: 20px;;
+  }
+}
+
+/* ***** Desktop View ***** */ 
+/* @media screen and (min-device-width: 801px) { */
+@media screen and (min-width: 1100px) {
+  .user-container {
+    padding: 10px 15px 0 0;
+  }
+  
+  .lower-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .fa-user {
+    height: 20px;
+  }
+  
+  .user-handle {
+    font-size: 18px;
+  }
+  
+  .app-name {
+    padding-right: 15px;
+    font-size: 3.5rem;
+    margin-top: 5px;
+  }
+
+  .fa-pagelines {
+    font-size: 85px;
+  }
+  
+  /* Main Desktop */
+  main {
+    height: 58rem;
+  }
+
+  .cards-container {
+    grid-template-columns: repeat(4, .25fr);
+  }
 }

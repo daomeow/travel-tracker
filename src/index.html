@@ -1,14 +1,57 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <title>Travel Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
-
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
-    
+    <header>
+      <section class="user-container">
+        <i class="far fa-user"></i>
+        <div class="user-handle"> Admin Username</div>
+      </section>
+      <section class="lower-header">
+        <ul class="nav-container">
+          <li><i class="fas fa-apple-alt"></i>Home</li>
+          <li><i class="fas fa-list-ul"></i>Trip Request</li>
+          <!-- <li><i class="far fa-clock"></i>Appointments</li> -->
+        </ul>
+        <section class="app-name-container">
+          <h1 class="app-name">Travel Tracker</h1>
+          <i class="fab fa-pagelines"></i>
+        </section>
+      </section>
+    </header>
+    <main>
+      <h2 class="main-title">Hello User!</h2>
+      <section class="cards-container">
+        <article>
+          <section class="card-header">
+            <p class="">Past Trips</p>
+          </section>
+          <p class="destination">Lima, Peru</p>
+          <p>04/20/21</p>
+        </article>
+        <article>
+          <section class="card-header">
+            <p>Present Trips</p>
+          </section>
+          <p class="destination">Likes to play</p>
+        </article>
+        <article>
+          <section class="card-header">
+            <p>Upcoming Trips</p>
+          </section>
+          <p class="destination">Snores</p>
+        </article>
+        <article>
+          <section class="card-header">
+            <p>Pending Trips</p>
+          </section>
+          <p class="destination">Can dive for long periods at a time</p>
+        </article>
+      </section>
+    </main>
   </body>
 </html>
