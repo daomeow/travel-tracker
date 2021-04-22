@@ -19,9 +19,9 @@ const fakeUsers = [
 const fakeTrips = [
   {
     "id": 1,
-    "userID": 44,
+    "userID": 1,
     "destinationID": 1,
-    "travelers": 1,
+    "travelers": 2,
     "date": "2019/09/16",
     "duration": 8,
     "status": "approved",
@@ -29,7 +29,7 @@ const fakeTrips = [
   },
   {
     "id": 2,
-    "userID": 35,
+    "userID": 1,
     "destinationID": 2,
     "travelers": 5,
     "date": "2020/10/04",
@@ -39,7 +39,7 @@ const fakeTrips = [
   },
   {
     "id": 3,
-    "userID": 3,
+    "userID": 1,
     "destinationID": 3,
     "travelers": 4,
     "date": "2020/05/22",
