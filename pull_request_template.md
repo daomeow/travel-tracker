@@ -4,4 +4,4 @@
 ## What is the change?
 * 
 
-## Releated issues
+## Related issues
