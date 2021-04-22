@@ -82,9 +82,8 @@ body {
   }
 
   article {
-    border-radius: 1rem;
     padding: 0 2rem;
-    margin-bottom: 15px;
+    margin-bottom: 2rem;
     background-color: #d8e2dc;
     height: 40rem;
     box-shadow: 3px 3px rgba(0, 0, 0, 0.5);
@@ -119,6 +118,11 @@ body {
     font-size: 20px;
   }
 
+  .fa-home,
+  .fa-plane-departure {
+    padding-right: 3px;
+  }
+
   .app-name {
     font-size: 2rem;
   }
@@ -147,8 +151,7 @@ body {
   }
   
   article {
-    border-radius: 1rem;
-    width: 13rem;
+    width: 14rem;
     height: 30rem;
   }
 
@@ -191,10 +194,10 @@ body {
     font-size: 18px;
   }
   
-  .fa-home,
-  .fa-plane-depature {
-    padding-left: 20px;
-  }
+  // .fa-home,
+  // .fa-plane-depature {
+  //   padding-left: 20px;
+  // }
 
   .app-name {
     font-size: 3.5rem;
