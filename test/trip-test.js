@@ -45,8 +45,8 @@ describe('Trip', () => {
     expect(trip1.suggestedActivities).to.deep.equal([]);
   });
 
-  it.skip('should identify the destionation', () => {
-    expect(trip1.identifyDestination()).to.be.equal(  {
+  it('should identify the destionation', () => {
+    expect(trip1.identifyDestination()).to.deep.equal(  {
       "id": 1,
       "destination": "Lima, Peru",
       "estimatedLodgingCostPerDay": 70,
@@ -56,7 +56,7 @@ describe('Trip', () => {
     });
   });
 
-  it.skip('should calculate the total cost of the trip', () => {
-    expect(trip1.calculateCost).to.be.equal(1034);
+  it('should calculate the total cost of the trip', () => {
+    expect(trip1.calculateCost()).to.be.equal(940);
   });
 });

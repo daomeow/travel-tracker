@@ -10,9 +10,17 @@ class Trip {
     this.suggestedActivities = tripData.suggestedActivities;
     this.destinationData = destinationData;
   }
-}
-// Methods: identify destinationID with actual destination
-// Cost of trip [# travelers, lodging, flight per day]
 
+  identifyDestination() {
+    return this.destinationData.find(trip => trip.id === this.id);
+  }
+
+  calculateCost() {
+    const destination = this.identifyDestination();
+    const total = (destination.estimatedLodgingCostPerDay + 
+    destination.estimatedFlightCostPerPerson) * this.travelers;
+    return total;
+  }
+}
 
 export default Trip;
