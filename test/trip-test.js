@@ -30,11 +30,11 @@ describe('Trip', () => {
   });
 
   it('should have a start date', () => {
-    expect(trip1.date).to.be.equal('2019/09/16');
+    expect(trip1.date).to.be.equal("2020/01/19");
   });
 
   it('should have a duration length of this trip', () => {
-    expect(trip1.duration).to.be.equal(8);
+    expect(trip1.duration).to.be.equal(3);
   });
 
   it('should have a status of approval', () => {
@@ -57,6 +57,6 @@ describe('Trip', () => {
   });
 
   it('should calculate the total cost of the trip', () => {
-    expect(trip1.calculateCost()).to.be.equal(940);
+    expect(trip1.calculateCost()).to.be.equal(1010);
   });
 });

@@ -1,12 +1,12 @@
 import { expect } from 'chai';
 import {fakeUsers} from '../src/data/fakeData';
-import TravelerRepo from '../src/traveler-repo';
+import TravelerRepo from '../src/traveler-repo.js';
 
 describe('Traveler Repo', () => {
   let travelerRepo;
 
   beforeEach(() => {
-    travelerRepo = new TravelerRepo(fakeUsers);
+    travelerRepo = new TravelerRepo(fakeUsers[0]);
   });
 
   it('should be an instance of TravelerRepo', () => {

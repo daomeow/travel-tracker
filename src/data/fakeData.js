@@ -22,8 +22,8 @@ const fakeTrips = [
     "userID": 1,
     "destinationID": 1,
     "travelers": 2,
-    "date": "2019/09/16",
-    "duration": 8,
+    "date": "2020/01/19",
+    "duration": 3,
     "status": "approved",
     "suggestedActivities": []
   },
@@ -32,9 +32,9 @@ const fakeTrips = [
     "userID": 1,
     "destinationID": 2,
     "travelers": 5,
-    "date": "2020/10/04",
-    "duration": 18,
-    "status": "pending",
+    "date": "2020/5/04",
+    "duration": 2,
+    "status": "approved",
     "suggestedActivities": []
   },
   {
@@ -42,8 +42,8 @@ const fakeTrips = [
     "userID": 1,
     "destinationID": 3,
     "travelers": 4,
-    "date": "2020/05/22",
-    "duration": 17,
+    "date": "2020/10/22",
+    "duration": 2,
     "status": "pending",
     "suggestedActivities": []
   }
