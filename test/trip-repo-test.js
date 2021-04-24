@@ -57,6 +57,16 @@ describe('Trip Repo', () => {
         "duration": 2,
         "status": "pending",
         "suggestedActivities": []
+      },
+      {
+        "id": 5,
+        "userID": 2,
+        "destinationID": 2,
+        "travelers": 5,
+        "date": "2020/5/04",
+        "duration": 2,
+        "status": "approved",
+        "suggestedActivities": []
       }
     ]);
   });
@@ -67,23 +77,25 @@ describe('Trip Repo', () => {
     ]);
   });
 
-  it.skip('should filter present trips', () => {
-    expect(tripRepo.findUserCurrentTrip(1, date)).to.equal({"date": "2020/5/04", "name": "Stockholm, Sweden"});
+  it('should filter present trips', () => {
+    expect(tripRepo.findUserCurrentTrip(1, date)).to.deep.equal([
+      {"date": "2020/5/04", "destination": "Stockholm, Sweden"}
+    ]);
   });
 
   it.skip('should filter upcoming trips', () => {
-    expect(tripRepo.findUserUpcomingTrips(1, date)).to.equal([
-      {"date": "2020/10/22", "name": "Sydney, Austrailia"}
+    expect(tripRepo.findUserUpcomingTrips(1, date)).to.deep.equal([
+      {"date": "2020/10/22", "destination": "Sydney, Austrailia"}
     ]);
   });
 
   it.skip('should filter pending trips', () => {
-    expect(tripRepo.findUserPendingTrips(1)).to.equal([
-      {"date": "2020/10/22", "name": "Sydney, Austrailia"}
+    expect(tripRepo.findUserPendingTrips(1)).to.deep.equal([
+      {"date": "2020/10/22", "destination": "Sydney, Austrailia"}
     ]);
   });
 
   it.skip('should calculate the total amount spent on trips for the current year', () => {
-    expect(tripRepo.calculateUserAnnualSpent(1)).to.equal("relaxer");
+    expect(tripRepo.calculateUserAnnualSpent(1)).to.deep.equal("relaxer");
   });
 });
