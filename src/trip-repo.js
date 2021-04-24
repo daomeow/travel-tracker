@@ -12,6 +12,22 @@ class TripRepo {
     return date1 > date2 ? true : false;
   }
 
+  matchDestinationNames(tripArray) {
+    const linkDestination = tripArray.map(trip => {
+      const findDestination = this.destinationData.find(dest => dest.id === trip.destinationID);
+      const newTrip = new Trip(trip, findDestination);
+      return newTrip;
+    });
+    return linkDestination;
+  }
+
+  createOnlyDateDestination(tripArray, userID) {
+    const currentUserTrips = tripArray.filter(trip => trip.userID === userID);
+    const destinationArray = this.matchDestinationNames(currentUserTrips);
+    const newObject = destinationArray.map(trip => ({'date':trip.date, 'destination':trip.destination.destination}));
+    return newObject;
+  }
+
   findUserPastTrips(userID, date) {
     const pastDates = [];
     
@@ -21,27 +37,17 @@ class TripRepo {
       }
     }));
 
+    // QUESTION FOR HUGH: I want to return the element because those are the objects I need but when I return it it comes back as False/True. Is this because my matchDestionNames returns only true/false?
+
     // const check = this.compareDates(this.allTrips.filter(element => {
     //   if (this.compareDates(date, element.date)) {
     //     console.log(element)
     //     return element;
     //   } 
     // }));
-
-    const currentUserTrips = pastDates.filter(trip => trip.userID === userID);
-    const destinationArray = this.matchDestinationNames(currentUserTrips);
-    const newObject = destinationArray.map(trip => ({'date':trip.date, 'destination':trip.destination.destination}));
-    return newObject;
+    return this.createOnlyDateDestination(pastDates, userID);
   }
 
-  matchDestinationNames(tripArray) {
-    const linkDestination = tripArray.map(trip => {
-      const findDestination = this.destinationData.find(dest => dest.id === trip.destinationID);
-      const newTrip = new Trip(trip, findDestination);
-      return newTrip;
-    });
-    return linkDestination;
-  }
 
   findUserCurrentTrip(userID, date) {
     const currentUserTrips = this.allTrips.filter(trip => {
@@ -60,29 +66,23 @@ class TripRepo {
         futureTrips.push(element);
       }
     }));
-    const currentUserTrips = futureTrips.filter(trip => trip.userID === userID);
-    const destinationArray = this.matchDestinationNames(currentUserTrips);
-    const newObject = destinationArray.map(trip => ({'date':trip.date, 'destination':trip.destination.destination}));
-    return newObject;
+    return this.createOnlyDateDestination(futureTrips, userID);
   }
 
   findUserPendingTrips(userID, date) {
-    const pendingTrips = [];
+    const futureTrips = [];
     
     this.compareDates(this.allTrips.forEach(element => {
       if (this.compareDates(element.date, date)) {
-        pendingTrips.push(element);
+        futureTrips.push(element);
       }
     }));
-    const currentUserTrips = pendingTrips.filter(trip => trip.userID === userID &&
-      trip.status === 'pending');
-    const destinationArray = this.matchDestinationNames(currentUserTrips);
-    const newObject = destinationArray.map(trip => ({'date':trip.date, 'destination':trip.destination.destination}));
-    return newObject;
+    const pendingTrips = futureTrips.filter(trip => trip.status === 'pending');
+      return this.createOnlyDateDestination(pendingTrips, userID);
   }
 
   calculateYearlyExpenditure(userID, date) {
-    const year = date.split('/')[0]
+    const year = date.split('/')[0];
     const pastDates = [];
     let totalCost = 0;
 
