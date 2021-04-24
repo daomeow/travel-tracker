@@ -53,8 +53,19 @@ class TripRepo {
     return newObject;
   }
 
-  // findUserUpcomingTrips(userID, date) {
-  // }
+  findUserUpcomingTrips(userID, date) {
+    const futureTrips = [];
+    
+    this.compareDates(this.allTrips.forEach(element => {
+      if (this.compareDates(element.date, date)) {
+        futureTrips.push(element);
+      }
+    }));
+    const currentUserTrips = futureTrips.filter(trip => trip.userID === userID);
+    const destinationArray = this.matchDestinationNames(currentUserTrips);
+    const newObject = destinationArray.map(trip => ({'date':trip.date, 'destination':trip.destination.destination}));
+    return newObject;
+  }
 
   // findUserPendingTrips(userID) {
   // }

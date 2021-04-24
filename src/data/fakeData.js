@@ -66,6 +66,16 @@ const fakeTrips = [
     "duration": 2,
     "status": "approved",
     "suggestedActivities": []
+  },
+  {
+    "id": 6,
+    "userID": 2,
+    "destinationID": 3,
+    "travelers": 4,
+    "date": "2020/10/22",
+    "duration": 2,
+    "status": "pending",
+    "suggestedActivities": []
   }
 ]
 

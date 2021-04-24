@@ -67,6 +67,16 @@ describe('Trip Repo', () => {
         "duration": 2,
         "status": "approved",
         "suggestedActivities": []
+      },
+      {
+        "id": 6,
+        "userID": 2,
+        "destinationID": 3,
+        "travelers": 4,
+        "date": "2020/10/22",
+        "duration": 2,
+        "status": "pending",
+        "suggestedActivities": []
       }
     ]);
   });
@@ -83,7 +93,7 @@ describe('Trip Repo', () => {
     ]);
   });
 
-  it.skip('should filter upcoming trips', () => {
+  it('should filter upcoming trips', () => {
     expect(tripRepo.findUserUpcomingTrips(1, date)).to.deep.equal([
       {"date": "2020/10/22", "destination": "Sydney, Austrailia"}
     ]);
