@@ -1,4 +1,5 @@
 export const apiData = () => {
+  let userID = (Math.floor(Math.random() * 49) + 1);
   const displayErrorMessage = (err) => {
     const errorField = document.querySelector('.js-error');
     const message = err.message === 'Failed to fetch' ?
@@ -6,9 +7,13 @@ export const apiData = () => {
     errorField.innerText = message;
   }
 
-  const travelers = fetch('http://localhost:3001/api/v1/travelers')
+  const allTravelers = fetch('http://localhost:3001/api/v1/travelers')
     .then(response => response.json())
-    .catch(err => displayErrorMessage(err)); 
+    .catch(err => displayErrorMessage(err));
+    
+  const currentTraveler = fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
+  .then(response => response.json())
+  .catch(err => displayErrorMessage(err)); 
 
   const allTrips = fetch('http://localhost:3001/api/v1/trips')
     .then(response => response.json())
@@ -19,15 +24,14 @@ export const apiData = () => {
     .catch(err => displayErrorMessage(err)); 
 
 
-  return Promise.all([allDestinations, allTrips, travelers])
+  return Promise.all([allTravelers, currentTraveler, allTrips, allDestinations])
     .then(data => {
-        let apiInfo = {};
-        apiInfo.allDestinations = data[0];
-        apiInfo.allTrips = data[1];
-        apiInfo.travelers = data[2];
-        
+        const apiInfo = {};
+        apiInfo.allTravelers = data[0];
+        apiInfo.currentTraveler = data[1];
+        apiInfo.allTrips = data[2];
+        apiInfo.allDestinations = data[3];
         return apiInfo;
     })
     .catch(err => displayErrorMessage(err));
-
-}
+  }

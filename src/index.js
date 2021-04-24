@@ -1,10 +1,28 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
+import TravelerRepo from './traveler-repo.js';
+import Traveler from './traveler.js';
+import TripRepo from './trip-repo.js';
+// import Trip from './trip.js'; 
+import {apiData} from './data/api-data.js';
+import domUpdates from './domUpdates.js';                  
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+// import './images/turing-logo.png'
 
-console.log('This is the JavaScript entry file - your code begins here.');
+//query slectors
+
+//event listeners
+window.onload = onStartup();
+
+function onStartup() {
+  apiData()
+  .then(data => {
+    const travelerRepo = new TravelerRepo(data.allTravelers);
+    let currentTraveler = new Traveler(data.currentTraveler);
+    console.log(currentTraveler)
+    const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
+    domUpdates.greetUser(currentTraveler);
+  })
+}
+
+// Toggle page function 
