@@ -4,7 +4,7 @@ import Trip from '../src/trip.js';
 
 describe('Trip', () => {
   let trip1;
-  
+
   beforeEach(() => {
     trip1 = new Trip(fakeTrips[0], fakeDestinations);
   })
@@ -14,7 +14,7 @@ describe('Trip', () => {
   });
 
   it('should have a unique id', () => {
-    expect(trip1.id).to.be.equal(1);
+    expect(trip1.tripID).to.be.equal(1);
   });
 
   it('should have an associated traveler\'s ID', () => {

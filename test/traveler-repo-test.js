@@ -6,7 +6,7 @@ describe('Traveler Repo', () => {
   let travelerRepo;
 
   beforeEach(() => {
-    travelerRepo = new TravelerRepo(fakeUsers[0]);
+    travelerRepo = new TravelerRepo(fakeUsers);
   });
 
   it('should be an instance of TravelerRepo', () => {

@@ -9,7 +9,7 @@ describe('Traveler', () => {
 
   beforeEach(() => {
     date = "2020/5/04";
-    user1 = new Traveler(fakeUsers[0])
+    user1 = new Traveler(fakeUsers[0], fakeTrips, fakeDestinations);
   })
 
   it('should be an instance of Traveler', () => {
@@ -29,7 +29,7 @@ describe('Traveler', () => {
   });
 
   it.skip('should filter past trips', () => {
-    expect(user1.findPastTrips()).to.equal([
+    expect(user1.findPastTrips(date)).to.equal([
       {"date": "2020/01/19", "name": "Lima, Peru"}
     ]);
   });
