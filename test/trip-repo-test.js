@@ -132,7 +132,7 @@ describe('Trip Repo', () => {
     ]);
   });
 
-  it.only('should filter pending trips', () => {
+  it('should filter pending trips', () => {
     expect(tripRepo.findUserPendingTrips(1, date)).to.deep.equal([
       {"date": "2020/10/22", "destination": "Sydney, Austrailia"}
     ]);

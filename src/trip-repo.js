@@ -29,15 +29,7 @@ class TripRepo {
   }
 
   findUserPastTrips(userID, date) {
-    const pastDates = [];
-    
-    this.compareDates(this.allTrips.forEach(element => {
-      if (this.compareDates(date, element.date)) {
-        pastDates.push(element);
-      }
-    }));
-
-    // QUESTION FOR HUGH: I want to return the element because those are the objects I need but when I return it it comes back as False/True. Is this because my matchDestionNames returns only true/false?
+    // QUESTION FOR HUGH: I want to return the element because those are the objects I need but when I return it it comes back as False/True. Is this because my matchDestionNames returns only true/false? I also tried to make this chunk of code into its own function but flippting the date and element.date got really funky...
 
     // const check = this.compareDates(this.allTrips.filter(element => {
     //   if (this.compareDates(date, element.date)) {
@@ -45,17 +37,21 @@ class TripRepo {
     //     return element;
     //   } 
     // }));
-    return this.createOnlyDateDestination(pastDates, userID);
+    
+    const pastTrips = [];
+    
+    this.compareDates(this.allTrips.forEach(element => {
+      if (this.compareDates(date, element.date)) {
+        pastTrips.push(element);
+      }
+    }));
+
+    return this.createOnlyDateDestination(pastTrips, userID);
   }
 
-
   findUserCurrentTrip(userID, date) {
-    const currentUserTrips = this.allTrips.filter(trip => {
-      return trip.date === date && trip.userID === userID;
-    });
-    const destinationArray = this.matchDestinationNames(currentUserTrips);
-    const newObject = destinationArray.map(trip => ({'date':trip.date, 'destination':trip.destination.destination}));
-    return newObject;
+    const currentUserTrips = this.allTrips.filter(trip => trip.date === date);
+    return this.createOnlyDateDestination(currentUserTrips, userID);
   }
 
   findUserUpcomingTrips(userID, date) {
