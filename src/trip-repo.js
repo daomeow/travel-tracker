@@ -35,13 +35,12 @@ class TripRepo {
   }
 
   matchDestinationNames(tripArray) {
-    const checkArray = [];
-    tripArray.forEach(element => {
-      const newDestination = this.destinationData.filter(dest => dest.id === element.id);
-      const newTrip = new Trip(element, newDestination[0]);
-      checkArray.push(newTrip);
+    const linkDestination = tripArray.map(trip => {
+      const newDestination = this.destinationData.find(dest => dest.id === trip.destinationID);
+      const newTrip = new Trip(trip, newDestination);
+      return newTrip;
     });
-    return checkArray;
+    return linkDestination;
   }
 
   findUserCurrentTrip(userID, date) {
@@ -67,8 +66,19 @@ class TripRepo {
     return newObject;
   }
 
-  // findUserPendingTrips(userID) {
-  // }
+  findUserPendingTrips(userID, date) {
+    const pendingTrips = [];
+    this.compareDates(this.allTrips.forEach(element => {
+      if (this.compareDates(element.date, date)) {
+        pendingTrips.push(element);
+      }
+    }));
+    const currentUserTrips = pendingTrips.filter(trip => trip.userID === userID &&
+      trip.status === 'pending');
+    const destinationArray = this.matchDestinationNames(currentUserTrips);
+    const newObject = destinationArray.map(trip => ({'date':trip.date, 'destination':trip.destination.destination}));
+    return newObject;
+  }
 }
 
 export default TripRepo;
