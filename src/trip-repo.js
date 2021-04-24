@@ -36,8 +36,8 @@ class TripRepo {
 
   matchDestinationNames(tripArray) {
     const linkDestination = tripArray.map(trip => {
-      const newDestination = this.destinationData.find(dest => dest.id === trip.destinationID);
-      const newTrip = new Trip(trip, newDestination);
+      const findDestination = this.destinationData.find(dest => dest.id === trip.destinationID);
+      const newTrip = new Trip(trip, findDestination);
       return newTrip;
     });
     return linkDestination;
@@ -68,6 +68,7 @@ class TripRepo {
 
   findUserPendingTrips(userID, date) {
     const pendingTrips = [];
+    
     this.compareDates(this.allTrips.forEach(element => {
       if (this.compareDates(element.date, date)) {
         pendingTrips.push(element);
@@ -78,6 +79,22 @@ class TripRepo {
     const destinationArray = this.matchDestinationNames(currentUserTrips);
     const newObject = destinationArray.map(trip => ({'date':trip.date, 'destination':trip.destination.destination}));
     return newObject;
+  }
+
+  calculateYearlyExpenditure(userID, date) {
+    const year = date.split('/')[0]
+    const pastDates = [];
+    let totalCost = 0;
+
+    this.compareDates(this.allTrips.forEach(element => {
+      if (this.compareDates(element.date, year) && (this.compareDates(date, element.date))) {
+        pastDates.push(element);
+      }
+    }));
+    const currentUserTrips = pastDates.filter(trip => trip.userID === userID);
+    const destinationArray = this.matchDestinationNames(currentUserTrips);    
+    destinationArray.forEach(trip => totalCost += trip.calculateCost());
+    return totalCost;
   }
 }
 

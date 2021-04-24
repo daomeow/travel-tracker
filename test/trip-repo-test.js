@@ -87,13 +87,35 @@ describe('Trip Repo', () => {
         "duration": 2,
         "status": "approved",
         "suggestedActivities": []
+      },
+      {
+        "id": 8,
+        "userID": 1,
+        "destinationID": 4,
+        "travelers": 4,
+        "date": "2020/01/24",
+        "duration": 2,
+        "status": "approved",
+        "suggestedActivities": []
+      },
+      {
+        "id": 9,
+        "userID": 1,
+        "destinationID": 5,
+        "travelers": 4,
+        "date": "2019/05/04",
+        "duration": 2,
+        "status": "approved",
+        "suggestedActivities": []
       }
     ]);
   });
 
   it('should find all past trips based off a user\'s ID', () => {
     expect(tripRepo.findUserPastTrips(1, date)).to.deep.equal([
-      {"date": "2020/01/19", "destination": "Lima, Peru"}
+      {"date": "2020/01/19", "destination": "Lima, Peru"},
+      {"date": "2020/01/24", "destination": "Tokyo, Japan"},
+      {"date": "2019/05/04", "destination": "Jakarta, Indonesia"}
     ]);
   });
 
@@ -116,7 +138,7 @@ describe('Trip Repo', () => {
     ]);
   });
 
-  it.skip('should calculate the total amount spent on trips for the current year', () => {
-    expect(tripRepo.calculateUserAnnualSpent(1)).to.deep.equal("relaxer");
+  it('should calculate the total amount spent on trips for the current year', () => {
+    expect(tripRepo.calculateYearlyExpenditure(1, date)).to.equal(5260);
   });
 });
