@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import {fakeUsers, fakeTrips, fakeDestinations} from '../src/data/fakeData';
 import Traveler from '../src/traveler.js';
-import Trip from '../src/trip.js';
 
 describe('Traveler', () => {
   let user1;

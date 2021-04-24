@@ -1,5 +1,5 @@
 class Trip {
-  constructor(tripData, destinationData) {
+  constructor(tripData, destination) {
     this.tripID = tripData.id;
     this.userID = tripData.userID;
     this.destinationID = tripData.destinationID;
@@ -8,17 +8,17 @@ class Trip {
     this.duration = tripData.duration;
     this.status = tripData.status;
     this.suggestedActivities = tripData.suggestedActivities;
-    this.destinationData = destinationData;
+    this.destination = destination;
   }
 
-  identifyDestination() {
-    return this.destinationData.find(trip => trip.id === this.tripID);
-  }
+  // identifyDestination() {
+  //   return this.destinationData.find(trip => trip.id === this.tripID);
+  // }
 
   calculateCost() {
-    const destination = this.identifyDestination();
-    const totalLodging = this.duration * destination.estimatedLodgingCostPerDay; 
-    const totalFlightCost = destination.estimatedFlightCostPerPerson * this.travelers;
+    // const destination = this.identifyDestination();
+    const totalLodging = this.duration * this.destination.estimatedLodgingCostPerDay; 
+    const totalFlightCost = this.destination.estimatedFlightCostPerPerson * this.travelers;
     const total = totalLodging + totalFlightCost;
     return total;
   }

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import {fakeTrips} from '../src/data/fakeData';
-import Trip from '../src/trip';
+import {fakeDestinations, fakeTrips} from '../src/data/fakeData';
+import Trip from '../src/trip.js';
 import TripRepo from '../src/trip-repo.js';
 
 describe('Trip Repo', () => {
@@ -9,7 +9,7 @@ describe('Trip Repo', () => {
 
   beforeEach(() => {
     date = "2020/5/04";
-    tripRepo = new TripRepo(fakeTrips);
+    tripRepo = new TripRepo(fakeTrips, fakeDestinations);
   })
 
   it('should be an instance of Trip', () => {
@@ -17,7 +17,7 @@ describe('Trip Repo', () => {
   });
 
   it('should have an array of all the trips', () => {
-    expect(tripRepo.allTrips).to.be.equal([
+    expect(tripRepo.allTrips).to.deep.equal([
       {
         "id": 1,
         "userID": 1,
@@ -47,33 +47,43 @@ describe('Trip Repo', () => {
         "duration": 2,
         "status": "pending",
         "suggestedActivities": []
+      },
+      {
+        "id": 4,
+        "userID": 2,
+        "destinationID": 3,
+        "travelers": 4,
+        "date": "2019/10/22",
+        "duration": 2,
+        "status": "pending",
+        "suggestedActivities": []
       }
     ]);
   });
 
-  it.skip('should find all past trips based off a user\'s ID', () => {
-    expect(user1.findUserPastTrips(1, date)).to.equal([
-      {"date": "2020/01/19", "name": "Lima, Peru"}
+  it('should find all past trips based off a user\'s ID', () => {
+    expect(tripRepo.findUserPastTrips(1, date)).to.deep.equal([
+      {"date": "2020/01/19", "destination": "Lima, Peru"}
     ]);
   });
 
   it.skip('should filter present trips', () => {
-    expect(user1.findUserCurrentTrip(1, date)).to.equal({"date": "2020/5/04", "name": "Stockholm, Sweden"});
+    expect(tripRepo.findUserCurrentTrip(1, date)).to.equal({"date": "2020/5/04", "name": "Stockholm, Sweden"});
   });
 
   it.skip('should filter upcoming trips', () => {
-    expect(user1.findUserUpcomingTrips(1, date)).to.equal([
+    expect(tripRepo.findUserUpcomingTrips(1, date)).to.equal([
       {"date": "2020/10/22", "name": "Sydney, Austrailia"}
     ]);
   });
 
   it.skip('should filter pending trips', () => {
-    expect(user1.findUserPendingTrips(1)).to.equal([
+    expect(tripRepo.findUserPendingTrips(1)).to.equal([
       {"date": "2020/10/22", "name": "Sydney, Austrailia"}
     ]);
   });
 
   it.skip('should calculate the total amount spent on trips for the current year', () => {
-    expect(user1.calculateUserAnnualSpent(1)).to.equal("relaxer");
+    expect(tripRepo.calculateUserAnnualSpent(1)).to.equal("relaxer");
   });
 });
