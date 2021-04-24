@@ -19,9 +19,9 @@ function onStartup() {
   .then(data => {
     const travelerRepo = new TravelerRepo(data.allTravelers);
     let currentTraveler = new Traveler(data.currentTraveler);
-    console.log(currentTraveler)
     const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
     domUpdates.greetUser(currentTraveler);
+    // domUpdates.totalSpent(currentTraveler, "2020/05/04")
   })
 }
 
