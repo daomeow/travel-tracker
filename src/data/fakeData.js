@@ -56,6 +56,56 @@ const fakeTrips = [
     "duration": 2,
     "status": "pending",
     "suggestedActivities": []
+  }, 
+  {
+    "id": 5,
+    "userID": 2,
+    "destinationID": 2,
+    "travelers": 5,
+    "date": "2020/5/04",
+    "duration": 2,
+    "status": "approved",
+    "suggestedActivities": []
+  },
+  {
+    "id": 6,
+    "userID": 2,
+    "destinationID": 3,
+    "travelers": 4,
+    "date": "2020/10/22",
+    "duration": 2,
+    "status": "pending",
+    "suggestedActivities": []
+  },
+  {
+    "id": 7,
+    "userID": 1,
+    "destinationID": 2,
+    "travelers": 4,
+    "date": "2020/05/22",
+    "duration": 2,
+    "status": "approved",
+    "suggestedActivities": []
+  },
+  {
+    "id": 8,
+    "userID": 1,
+    "destinationID": 4,
+    "travelers": 4,
+    "date": "2020/01/24",
+    "duration": 2,
+    "status": "approved",
+    "suggestedActivities": []
+  },
+  {
+    "id": 9,
+    "userID": 1,
+    "destinationID": 5,
+    "travelers": 4,
+    "date": "2019/05/04",
+    "duration": 2,
+    "status": "approved",
+    "suggestedActivities": []
   }
 ]
 
@@ -83,6 +133,22 @@ const fakeDestinations = [
     "estimatedFlightCostPerPerson": 950,
     "image": "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
     "alt": "opera house and city buildings on the water with boats"
+  },
+  {
+    "id": 4,
+    "destination": "Tokyo, Japan",
+    "estimatedLodgingCostPerDay": 125,
+    "estimatedFlightCostPerPerson": 1000,
+    "image": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1971&q=80",
+    "alt": "city with people walking in crosswalk and brightly lit shops at night"
+  },
+  {
+    "id": 5,
+    "destination": "Jakarta, Indonesia",
+    "estimatedLodgingCostPerDay": 70,
+    "estimatedFlightCostPerPerson": 890,
+    "image": "https://images.unsplash.com/photo-1555333145-4acf190da336?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+    "alt": "lit up city at night"
   }
 ]
 
