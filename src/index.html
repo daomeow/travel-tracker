@@ -24,44 +24,58 @@
     </header>
     <main>
       <h1 class="js-error"></h1>
-      <section class="message-container">
-        <h2 class="user-name">Hello <span id="userName"></span>!</h2>
-        <p class="total-spent">In 2020 you've spent $<span class="total-spent" id="totalSpent"></span></p>
+      <section class="main-home hidden">
+        <section class="message-container">
+          <h2 class="user-name">Hello <span id="userName"></span>!</h2>
+          <p class="total-spent">In 2020 you've spent $<span class="total-spent" id="totalSpent"></span></p>
+        </section>
+        <section class="cards-container">
+          <article>
+            <section class="card-header">
+              <h3>Past Trips</h3>
+            </section>
+            <section class="trip-cards" id="pastTrips"></section>
+          </article>
+          <article>
+            <section class="card-header">
+              <h3>Current Trip</h3>
+            </section>
+            <section class="trip-cards" id="currentTrip"></section>
+          </article>
+          <article>
+            <section class="card-header">
+              <h3>Upcoming Trips</h3>
+            </section>
+            <section class="trip-cards" id="upcomingTrips"></section>
+          </article>
+          <article>
+            <section class="card-header">
+              <h3>Pending Trips</h3>
+            </section>
+            <section class="trip-cards" id="pendingTrips"></section>
+          </article>
+        </section>
       </section>
-      <section class="cards-container">
-        <article>
-          <section class="card-header">
-            <h3>Past Trips</h3>
-          </section>
-          <section class="trip-cards" id="pastTrips">
-            <!-- <p class="destination">Lima, Peru<br><sub class="date">2020/05/04</sub></p> -->
-          </section>
-        </article>
-        <article>
-          <section class="card-header">
-            <h3>Current Trip</h3>
-          </section>
-          <section class="trip-cards" id="currentTrip">
-            <!-- <p class="destination">Lima, Peru<br><sub class="date">2020/05/04</sub></p> -->
-          </section>
-        </article>
-        <article>
-          <section class="card-header">
-            <h3>Upcoming Trips</h3>
-          </section>
-          <section class="trip-cards" id="upcomingTrips">
-            <!-- <p class="destination">Lima, Peru<br><sub class="date">2020/05/04</sub></p> -->
-          </section>
-        </article>
-        <article>
-          <section class="card-header">
-            <h3>Pending Trips</h3>
-          </section>
-          <section class="trip-cards" id="pendingTrips">
-            <!-- <p class="destination">Lima, Peru<br><sub class="date">2020/05/04</sub></p> -->
-          </section>
-        </article>
+
+      <section class='user-form'>
+        <label class='form-date'>Date:</label><input placeholder='YY/MM/DD' id='formDate'></input>
+        <label>Duration:</label><input placeholder='Number of days' id='duration'></input>
+        <label>Number of Travelers:</label><input placeholder='Total traveling' id='numTravelers'></input>
+        <label>Destination Options:</label>
+        <select name='units' id='unit'>
+          <option value="">--Please select a location--</option>
+          <option value='1'>Lima, Peru</option>
+          <option value='2'>Stockholm, Sweden</option>
+          <option value='3'>Sydney, Austrailia</option>
+          <option value='4'>Cartagena, Colombia</option>
+          <option value='5'>Madrid, Spain</option>
+        </select>
+        <div class="button-container">
+          <button class="cost-button" id="costButton">Calculate Price</button>
+          <button class="post-button" id="postButton">Book Trip</button>
+        </div>
       </section>
+
     </main>
   </body>
 </html>
