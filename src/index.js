@@ -10,7 +10,7 @@ import domUpdates from './domUpdates.js';
 // import './images/turing-logo.png'
 
 //query slectors
-const currentDate = "2020/05/04";
+const currentDate = "2020/11/11";
 //event listeners
 window.onload = onStartup();
 
@@ -21,7 +21,7 @@ function onStartup() {
     let currentTraveler = new Traveler(data.currentTraveler);
     const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
     domUpdates.greetUser(currentTraveler);
-    domUpdates.totalSpent(currentTraveler, "2020/05/04")
+    domUpdates.totalSpent(currentTraveler.id, currentDate)
   })
 }
 

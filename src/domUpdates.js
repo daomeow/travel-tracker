@@ -17,6 +17,7 @@ const domUpdates = {
 
       const total = document.querySelector('#totalSpent');
       let test = tripRepo.calculateYearlyExpenditure(traveler, date)
+      total.innerHTML = test
     })
   }
 }
