@@ -53,7 +53,7 @@ class TripRepo {
   calculateTripCost(trip) {
     const totalLodging = trip.duration * trip.destination.estimatedLodgingCostPerDay; 
     const totalFlightCost = trip.destination.estimatedFlightCostPerPerson * trip.travelers;
-    const total = totalLodging + totalFlightCost;
+    const total = (totalLodging + totalFlightCost) * 1.1;
     return total;
   }
 
