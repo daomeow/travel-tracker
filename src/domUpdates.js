@@ -19,7 +19,26 @@ const domUpdates = {
       let test = tripRepo.calculateYearlyExpenditure(traveler, date)
       total.innerHTML = test
     })
+  },
+
+  addPastTrips(userID, date) {
+    apiData()
+    .then(data => {
+      const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
+      const pastSection = document.querySelector('#pastTrips');
+      pastSection.innerHTML = '';
+
+      let pastTrips = tripRepo.findUserPastTrips(userID, date);
+      console.log(pastTrips)
+
+      pastTrips.forEach(trip => {
+        pastSection.innerHTML += `
+        <p class="destination">${trip.destination}<br><sub class="date">${trip.date}</sub></p>
+        `
+      })
+    }) 
   }
+
 }
 
 export default domUpdates;

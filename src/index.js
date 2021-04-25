@@ -21,7 +21,8 @@ function onStartup() {
     let currentTraveler = new Traveler(data.currentTraveler);
     const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
     domUpdates.greetUser(currentTraveler);
-    domUpdates.totalSpent(currentTraveler.id, currentDate)
+    domUpdates.totalSpent(currentTraveler.id, currentDate);
+    domUpdates.addPastTrips(currentTraveler.id, currentDate);
   })
 }
 

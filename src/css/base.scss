@@ -1,8 +1,8 @@
 @import '_variables.scss';
 
-* {
-  border: 1px solid red
-}
+// * {
+//   border: 1px solid red
+// }
 
 body {
   margin: 0;
@@ -92,6 +92,7 @@ body {
     padding-bottom: 20px;
   }
 
+   /* Mobile Trips Section */
   .cards-container {
     padding: 0 5rem;
     justify-items: center;
@@ -118,18 +119,14 @@ body {
   .trip-cards {
     display: flex;
     justify-content: center;
-    height: 35rem;
+    flex-direction: column;
+    padding: 0 5rem;
   }
   
   .destination,
   .date {
     font-size: 1.5rem;
     background-color: #bfc0c0;
-    width: 15rem;
-    height: 4rem;
-  }
-  .destination {
-    padding-left: 7rem;
   }
 }
 
@@ -195,17 +192,12 @@ body {
   }
 
   .trip-cards {
-    height: 25rem;
+    padding: 0 2rem;
   }
 
   .destination, 
   .date {
-    width: 8rem;
-    padding: 0;
-  }
-
-  .destination {
-    padding: 0 2rem;
+    font-size: 20px;
   }
 }
 
@@ -247,7 +239,7 @@ body {
   
   /* Full Main Desktop */
   main {
-    height: 58rem;
+    // height: 58rem;
   }
 
   .cards-container {
