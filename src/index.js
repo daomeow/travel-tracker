@@ -9,9 +9,9 @@ import domUpdates from './domUpdates.js';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
 
-//query slectors
+
 const currentDate = "2020/11/11";
-//event listeners
+
 window.onload = onStartup();
 
 function onStartup() {
@@ -23,6 +23,9 @@ function onStartup() {
     domUpdates.greetUser(currentTraveler);
     domUpdates.totalSpent(currentTraveler.id, currentDate);
     domUpdates.addPastTrips(currentTraveler.id, currentDate);
+    domUpdates.addCurrentTrip(currentTraveler.id, currentDate);
+    domUpdates.addUpcomingTrips(currentTraveler.id, currentDate);
+    // domUpdates.addPendingTrips(currentTraveler.id, currentDate);
   })
 }
 
