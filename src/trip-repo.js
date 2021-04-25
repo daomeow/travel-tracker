@@ -50,6 +50,13 @@ class TripRepo {
     return this.createOnlyDateDestination(pendingTrips, userID);
   }
 
+  calculateTripCost(trip) {
+    const totalLodging = trip.duration * trip.destination.estimatedLodgingCostPerDay; 
+    const totalFlightCost = trip.destination.estimatedFlightCostPerPerson * trip.travelers;
+    const total = totalLodging + totalFlightCost;
+    return total;
+  }
+
   calculateYearlyExpenditure(userID, date) {
     const year = date.split('/')[0];
 
@@ -57,7 +64,7 @@ class TripRepo {
       this.compareDates(trip.date, year));
     const currentUserTrips = pastTrips.filter(trip => trip.userID === userID);
     const destinationArray = this.matchDestinationNames(currentUserTrips);
-    const sum = destinationArray.reduce((total, current) => total += current.calculateCost(), 0);
+    const sum = destinationArray.reduce((total, trip) => total += this.calculateTripCost(trip), 0);
     return sum;
   }
 }
