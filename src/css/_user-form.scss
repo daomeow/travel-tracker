@@ -1,0 +1,34 @@
+.user-form {
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+  font-family: ‘Open Sans’, sans-serif;
+}
+
+label {
+  font-size: 25px;
+  margin: 0 30px;
+}
+
+input,
+select {
+  height: 2rem;
+  font-size: 16px;
+  margin: 0 30px;
+}
+
+.destinations {
+  margin-bottom: 30px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  font-family: ‘Open Sans’, sans-serif;
+  height: 2.5rem;
+  margin: 0 30px 20px 0;
+  width: 8rem;
+}
