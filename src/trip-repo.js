@@ -2,8 +2,8 @@ import Trip from "./trip.js";
 
 class TripRepo {
   constructor(tripData, destinationData) {
-    this.allTrips = tripData;
-    this.destinationData = destinationData;
+    this.allTrips = tripData.trips;
+    this.destinationData = destinationData.destinations;
   }
 
   compareDates(d1, d2) {
@@ -15,7 +15,8 @@ class TripRepo {
   matchDestinationNames(tripArray) {
     const linkDestination = tripArray.map(trip => {
       const findDestination = this.destinationData.find(dest => dest.id === trip.destinationID);
-      const newTrip = new Trip(trip, findDestination);
+      const addDestinationKey = {"destinations": [findDestination]}
+      const newTrip = new Trip(trip, addDestinationKey);
       return newTrip;
     });
     return linkDestination;
@@ -51,7 +52,7 @@ class TripRepo {
 
   calculateYearlyExpenditure(userID, date) {
     const year = date.split('/')[0];
- 
+
     const pastTrips = this.allTrips.filter(trip => this.compareDates(date, trip.date) && 
       this.compareDates(trip.date, year));
     const currentUserTrips = pastTrips.filter(trip => trip.userID === userID);

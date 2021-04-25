@@ -10,15 +10,15 @@ const domUpdates = {
     userName.innerHTML = traveler.name.split(' ')[0]; 
   },
 
-  // totalSpent(traveler, date) {
-  //   apiData()
-  //   .then(data => {
-  //     const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
+  totalSpent(traveler, date) {
+    apiData()
+    .then(data => {
+      const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
 
-  //     const total = document.querySelector('#totalSpent');
-  //     let test = tripRepo.calculateYearlyExpenditure(traveler, date)
-  //   })
-  // }
+      const total = document.querySelector('#totalSpent');
+      let test = tripRepo.calculateYearlyExpenditure(traveler, date)
+    })
+  }
 }
 
 export default domUpdates;

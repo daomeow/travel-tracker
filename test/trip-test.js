@@ -6,7 +6,7 @@ describe('Trip', () => {
   let trip1;
 
   beforeEach(() => {
-    trip1 = new Trip(fakeTrips[0], fakeDestinations[0]);
+    trip1 = new Trip(fakeTrips.trips[0], fakeDestinations.destinations[0]);
   })
 
   it('should be an instance of Trip', () => {

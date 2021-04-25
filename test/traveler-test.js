@@ -4,11 +4,9 @@ import Traveler from '../src/traveler.js';
 
 describe('Traveler', () => {
   let user1;
-  let date;
 
   beforeEach(() => {
-    date = "2020/5/04";
-    user1 = new Traveler(fakeUsers[0]);
+    user1 = new Traveler(fakeUsers.travelers[0]);
   })
 
   it('should be an instance of Traveler', () => {

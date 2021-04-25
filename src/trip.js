@@ -8,7 +8,7 @@ class Trip {
     this.duration = tripData.duration;
     this.status = tripData.status;
     this.suggestedActivities = tripData.suggestedActivities;
-    this.destination = destination;
+    this.destination = destination.destinations[0];
   }
 
   calculateCost() {
