@@ -1,5 +1,9 @@
 @import '_variables.scss';
 
+// * {
+//   border: 1px solid red
+// }
+
 body {
   margin: 0;
   font-family: 'Cairo', sans-serif;
@@ -70,34 +74,59 @@ body {
     width: 40.1rem;
   }
 
-  .card-header {
+  .message-container {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
+
+  .user-name,
+  .total-spent,
+  .total {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  .total-spent,
+  .total {
+    padding-bottom: 20px;
+  }
+
+   /* Mobile Trips Section */
   .cards-container {
-    padding: 0 3rem;
+    padding: 0 5rem;
     justify-items: center;
   }
 
   article {
-    padding: 0 2rem;
     margin-bottom: 2rem;
     background-color: $header-color;
     height: 40rem;
     box-shadow: 3px 3px rgba(0, 0, 0, 0.5);
   }
 
-  .main-title {
-    font-size: 2rem;
-    margin: 0;
-    padding: 15px 0 15px 6px;
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #556B;
   }
-  .destination {
+
+  h3 {
+    font-size: 25px;
+  }
+
+  .trip-cards {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 5rem;
+  }
+  
+  .destination,
+  .date {
     font-size: 1.5rem;
     background-color: #bfc0c0;
-    padding: 20px 0 20px 5px;
   }
 }
 
@@ -138,32 +167,37 @@ body {
     height: 100%;
   }
 
-  .message-container {
-    display: flex;
-    justify-content: center;
+  .user-name,
+  .total-spent,
+  .total {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  .total-spent, 
+  .total {
+    padding-bottom: 20px;
   }
 
   .cards-container {
     display: grid;
     @include grid(2);
-    grid-gap: 10px;
-    padding: 0 10px;
+    grid-gap: 2rem;
+    padding: 0;
   }
   
   article {
-    width: 14rem;
+    width: 20rem;
     height: 30rem;
   }
 
-  .main-title {
-    font-size: 2rem;
-    margin: 0;
-    padding: 35px 0 35px 6px;
+  .trip-cards {
+    padding: 0 2rem;
   }
 
-  .destination {
-    font-size: 13px;
-    padding: 10px 0 10px 5px;
+  .destination, 
+  .date {
+    font-size: 20px;
   }
 }
 
@@ -204,9 +238,8 @@ body {
   }
   
   /* Full Main Desktop */
-  main {
-    height: 58rem;
-  }
+  // main {
+  // }
 
   .cards-container {
     @include grid(4);
