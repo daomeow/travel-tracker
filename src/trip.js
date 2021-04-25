@@ -8,12 +8,17 @@ class Trip {
     this.duration = tripData.duration;
     this.status = tripData.status;
     this.suggestedActivities = tripData.suggestedActivities;
-    this.destination = destination.destinations[0];
+    this.destination = destination.destinations;
+  }
+
+   identifyDestination() {
+    return this.destination.find(trip => trip.id === this.tripID);
   }
 
   calculateCost() {
-    const totalLodging = this.duration * this.destination.estimatedLodgingCostPerDay; 
-    const totalFlightCost = this.destination.estimatedFlightCostPerPerson * this.travelers;
+    const pairedDestination = this.identifyDestination();
+    const totalLodging = this.duration * pairedDestination.estimatedLodgingCostPerDay; 
+    const totalFlightCost = pairedDestination.estimatedFlightCostPerPerson * this.travelers;
     const total = totalLodging + totalFlightCost;
     return total;
   }

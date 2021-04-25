@@ -15,7 +15,7 @@ class TripRepo {
   matchDestinationNames(tripArray) {
     const linkDestination = tripArray.map(trip => {
       const findDestination = this.destinationData.find(dest => dest.id === trip.destinationID);
-      const addDestinationKey = {"destinations": [findDestination]}
+      const addDestinationKey = {"destinations": findDestination}
       const newTrip = new Trip(trip, addDestinationKey);
       return newTrip;
     });
