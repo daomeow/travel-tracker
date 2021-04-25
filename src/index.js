@@ -17,23 +17,19 @@ const costButton = document.querySelector('#costButton');
 const bookTripButton = document.querySelector('#postButton');
 
 window.onload = onStartup();
-formButton.addEventListener('click', displayPage);
-homeButton.addEventListener('click', displayPage);
+formButton.addEventListener('click', domUpdates.displayPage);
+homeButton.addEventListener('click', domUpdates.displayPage);
 
 function onStartup() {
   apiData()
   .then(data => {
-    // const travelerRepo = new TravelerRepo(data.allTravelers);
-    // const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
     let currentTraveler = new Traveler(data.currentTraveler);
+
     domUpdates.greetUser(currentTraveler);
     domUpdates.totalSpent(currentTraveler.id, currentDate);
     domUpdates.displayAllTrips(currentTraveler.id, currentDate);
-  })
+  });
 }
 
-function displayPage() {
-
-}
 
 

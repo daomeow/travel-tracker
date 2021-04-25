@@ -3,10 +3,14 @@ import Traveler from './traveler.js';
 import TripRepo from './trip-repo.js';
 import {apiData} from './data/api-data.js';
 
-const pastSection = document.querySelector('#pastTrips');
 const currentTripSection = document.querySelector('#currentTrip');
-const upcomingTripSection = document.querySelector('#upcomingTrips');
+const pastSection = document.querySelector('#pastTrips');
 const pendingTripSection = document.querySelector('#pendingTrips');
+const upcomingTripSection = document.querySelector('#upcomingTrips');
+
+const navButtons = document.querySelectorAll('#nav');
+const mainHome = document.querySelector('.main-home');
+const userForm = document.querySelector('.user-form');
 
 const domUpdates = {
   greetUser(traveler) {
@@ -33,27 +37,27 @@ const domUpdates = {
       const upcomingTrips = tripRepo.findUserUpcomingTrips(userID, date);
       const pendingTrips = tripRepo.findUserPendingTrips(userID, date);
 
-      pastTrips.forEach(trip => {
+      pastTrips.map(trip => {
         pastSection.innerHTML += `
           <p class="destination">${trip.destination}<br><sub class="date">${trip.date}</sub></p>
         `
       });
 
       // ADD MSG: YOU ARE CURRENTLY NOT ON A TRIP TODAY (DATE)
-      currentTrip.forEach(trip => {
+      currentTrip.map(trip => {
         currentTripSection.innerHTML += `
           <p class="destination">${trip.destination}<br><sub class="date">${trip.date}</sub></p>
         `
       });
 
-      upcomingTrips.forEach(trip => {
+      upcomingTrips.map(trip => {
         upcomingTripSection.innerHTML += `
           <p class="destination">${trip.destination}<br><sub class="date">${trip.date}</sub></p>
         `
       });
 
       // ADD MSG: YOU ARE CURRENTLY HAVE NO UPCOMING PENDING TRIPS
-      pendingTrips.forEach(trip => {
+      pendingTrips.map(trip => {
         pendingTripSection.innerHTML += `
           <p class="destination">${trip.destination}<br><sub class="date">${trip.date}</sub></p>
         `
@@ -61,6 +65,10 @@ const domUpdates = {
     }); 
   },
 
+  displayPage() {
+    mainHome.classList.toggle('hidden');
+    userForm.classList.toggle('hidden');
+  },
 }
 
 export default domUpdates;
