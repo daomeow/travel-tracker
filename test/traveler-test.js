@@ -1,14 +1,12 @@
 import { expect } from 'chai';
-import {fakeUsers, fakeTrips, fakeDestinations} from '../src/data/fakeData';
+import {fakeUsers} from '../src/data/fakeData';
 import Traveler from '../src/traveler.js';
 
 describe('Traveler', () => {
   let user1;
-  let date;
 
   beforeEach(() => {
-    date = "2020/5/04";
-    user1 = new Traveler(fakeUsers[0], fakeTrips, fakeDestinations);
+    user1 = new Traveler(fakeUsers.travelers[0]);
   })
 
   it('should be an instance of Traveler', () => {

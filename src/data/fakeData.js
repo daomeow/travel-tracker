@@ -1,4 +1,4 @@
-const fakeUsers = [
+const fakeUsers = {"travelers":[
   {
     "id": 1,
     "name": "Ham Leadbeater",
@@ -14,9 +14,9 @@ const fakeUsers = [
     "name": "Sibby Dawidowitsch",
     "travelerType": "shopper"
   }
-]
+]}
 
-const fakeTrips = [
+const fakeTrips = {"trips": [
   {
     "id": 1,
     "userID": 1,
@@ -107,9 +107,9 @@ const fakeTrips = [
     "status": "approved",
     "suggestedActivities": []
   }
-]
+]}
 
-const fakeDestinations = [ 
+const fakeDestinations = {"destinations":[ 
   {
     "id": 1,
     "destination": "Lima, Peru",
@@ -150,7 +150,7 @@ const fakeDestinations = [
     "image": "https://images.unsplash.com/photo-1555333145-4acf190da336?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
     "alt": "lit up city at night"
   }
-]
+]}
 
 export {
   fakeUsers,
