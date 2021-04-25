@@ -13,8 +13,12 @@
       </section>
       <section class="lower-header">
         <ul class="nav-container">
-          <li><i class="fas fa-home"></i>Home</li>
-          <li><i class="fas fa-plane-departure"></i>Trip Request</li>
+          <section id="homeButton">
+            <li><i class="fas fa-home"></i>Home</li>
+          </section>
+          <section id="formButton">
+            <li><i class="fas fa-plane-departure"></i>Trip Request</li>
+          </section>
         </ul>
         <section class="app-name-container">
           <h1 class="app-name">Travel Tracker</h1>
@@ -24,7 +28,7 @@
     </header>
     <main>
       <h1 class="js-error"></h1>
-      <section class="main-home hidden">
+      <section class="main-home">
         <section class="message-container">
           <h2 class="user-name">Hello <span id="userName"></span>!</h2>
           <p class="total-spent">In 2020 you've spent $<span class="total-spent" id="totalSpent"></span></p>
@@ -57,7 +61,7 @@
         </section>
       </section>
       
-      <section class='user-form'>
+      <section class='user-form hidden'>
         <label class='form-date'>Date:</label><input placeholder='YY/MM/DD' id='formDate'></input>
         <label>Duration:</label><input placeholder='Number of days' id='duration'></input>
         <label>Number of Travelers:</label><input placeholder='Total traveling' id='numTravelers'></input>

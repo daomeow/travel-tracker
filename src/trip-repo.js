@@ -65,7 +65,7 @@ class TripRepo {
     const currentUserTrips = pastTrips.filter(trip => trip.userID === userID);
     const destinationArray = this.matchDestinationNames(currentUserTrips);
     const sum = destinationArray.reduce((total, trip) => total += this.calculateTripCost(trip), 0);
-    return sum;
+    return sum.toFixed(2);
   }
 }
 

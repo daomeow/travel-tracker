@@ -11,22 +11,29 @@ import domUpdates from './domUpdates.js';
 
 
 const currentDate = "2020/5/11";
+const homeButton = document.querySelector('#homeButton');
+const formButton = document.querySelector('#formButton');
+const costButton = document.querySelector('#costButton');
+const bookTripButton = document.querySelector('#postButton');
 
 window.onload = onStartup();
+formButton.addEventListener('click', displayPage);
+homeButton.addEventListener('click', displayPage);
 
 function onStartup() {
   apiData()
   .then(data => {
-    const travelerRepo = new TravelerRepo(data.allTravelers);
+    // const travelerRepo = new TravelerRepo(data.allTravelers);
+    // const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
     let currentTraveler = new Traveler(data.currentTraveler);
-    const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
     domUpdates.greetUser(currentTraveler);
     domUpdates.totalSpent(currentTraveler.id, currentDate);
-    domUpdates.addPastTrips(currentTraveler.id, currentDate);
-    domUpdates.addCurrentTrip(currentTraveler.id, currentDate);
-    domUpdates.addUpcomingTrips(currentTraveler.id, currentDate);
-    domUpdates.addPendingTrips(currentTraveler.id, currentDate);
+    domUpdates.displayAllTrips(currentTraveler.id, currentDate);
   })
 }
 
-// Toggle page function 
+function displayPage() {
+
+}
+
+
