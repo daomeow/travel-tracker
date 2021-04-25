@@ -10,7 +10,7 @@ import domUpdates from './domUpdates.js';
 // import './images/turing-logo.png'
 
 
-const currentDate = "2020/11/11";
+const currentDate = "2020/5/11";
 
 window.onload = onStartup();
 
@@ -25,7 +25,7 @@ function onStartup() {
     domUpdates.addPastTrips(currentTraveler.id, currentDate);
     domUpdates.addCurrentTrip(currentTraveler.id, currentDate);
     domUpdates.addUpcomingTrips(currentTraveler.id, currentDate);
-    // domUpdates.addPendingTrips(currentTraveler.id, currentDate);
+    domUpdates.addPendingTrips(currentTraveler.id, currentDate);
   })
 }
 
