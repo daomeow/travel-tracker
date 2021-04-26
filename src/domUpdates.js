@@ -1,7 +1,8 @@
 import TravelerRepo from './traveler-repo.js';
 import Traveler from './traveler.js';
 import TripRepo from './trip-repo.js';
-import {apiData} from './api-data.js';
+import Trip from './trip.js'; 
+import {apiData, postData} from './api-data.js';
 
 const currentTripSection = document.getElementById('currentTrip');
 const pastSection = document.getElementById('pastTrips');
@@ -14,11 +15,12 @@ const formDate = document.getElementById('formDate');
 const formDuration = document.getElementById('duration');
 const numTravelers = document.getElementById('numTravelers');
 const formDestination = document.getElementById('destination');
+const formTotal = document.getElementById('totalCost');
 
 
 const domUpdates = {
   greetUser(traveler) {
-    const userName = document.querySelector('#userName');
+    const userName = document.getElementById('userName');
     userName.innerHTML = traveler.name.split(' ')[0]; 
   },
 
@@ -29,7 +31,7 @@ const domUpdates = {
       const total = document.querySelector('#totalSpent');
       const sum = tripRepo.calculateYearlyExpenditure(traveler, date);
       total.innerHTML = sum;
-    })
+    });
   },
 
   displayAllTrips(userID, date) {
@@ -73,15 +75,20 @@ const domUpdates = {
     userForm.classList.toggle('hidden');
   },
 
-  estimateTripCost() {
-    apiData()
-      .then(data => {
-        const trip = new Trip(data.allTrips, data.allDestinations);
-        const currentTraveler = new Traveler(data.currentTraveler);
-
-        identifyDestination()
-    })
-  },
+  // calculateNewTripCost() {
+  //   apiData()
+  //     .then(data => {
+  //       const trip = new Trip(data.allTrips, data.allDestinations);
+  //       // const currentTraveler = new Traveler(data.currentTraveler);
+  //       const userInput = domUpdates.retrieveNewTripData();
+  //       console.log(userInput.destinationID) 
+  //       // >> FAKE DATA 
+  //       const destination = trip.identifyDestination(userInput.destinationID);
+  //       console.log(destination)
+  //       const total = trip.calculateCost(destination);
+  //       formTotal.innerHTML = total;
+  //   })
+  // },
 
   retrieveNewTripData() {
     const formData = {
@@ -92,8 +99,24 @@ const domUpdates = {
       "status": "pending",
       "suggestedActivities": []
     }
-    return formData;   
+    //CHECK EMPTY IMPUT/ERROR MESSAGE 
+    //call new post 
+    // return postData(formData);
+    return domUpdates.addNewTrip(formData);   
   },
+
+  addNewTrip(newTrip) {
+    apiData()
+    .then(data => {
+      const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
+      const currentTraveler = new Traveler(data.currentTraveler);
+      const destinationIDUserID = {
+        "id": (tripRepo.allTrips.length) + 1,
+        "userID": currentTraveler.id
+      }
+    return postData(newTrip, destinationIDUserID);
+    })
+  }
 }
 
 export default domUpdates;

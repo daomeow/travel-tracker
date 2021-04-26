@@ -23,9 +23,9 @@ const bookTripButton = document.getElementById('postButton');
 window.onload = onStartup();
 formButton.addEventListener('click', domUpdates.displayPage);
 homeButton.addEventListener('click', domUpdates.displayPage);
-bookTripButton.addEventListener('click', retrieveNewTripData);
+bookTripButton.addEventListener('click', domUpdates.retrieveNewTripData);
 
-costButton.addEventListener('click', domUpdates.estimateTripCost);
+// costButton.addEventListener('click', domUpdates.calculateNewTripCost);
 
 function onStartup() {
   apiData()
