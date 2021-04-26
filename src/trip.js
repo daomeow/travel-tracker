@@ -11,12 +11,12 @@ class Trip {
     this.destination = destination.destinations;
   }
 
-  // calculateCost(location) {
-  //   const totalLodging = this.duration * location.estimatedLodgingCostPerDay; 
-  //   const totalFlightCost = location.estimatedFlightCostPerPerson * this.travelers;
-  //   const total = totalLodging + totalFlightCost;
-  //   return total;
-  // }
+  calculateCost(location) {
+    const totalLodging = this.duration * location.estimatedLodgingCostPerDay; 
+    const totalFlightCost = location.estimatedFlightCostPerPerson * this.travelers;
+    const total = (totalLodging + totalFlightCost) * 1.1;
+    return total.toFixed(2);
+  }
 }
 
 export default Trip;

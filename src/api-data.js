@@ -1,4 +1,4 @@
-import formData from './index.js';  
+// import indexFile from './index.js';  
 
 let userID = (Math.floor(Math.random() * 49) + 1);
 
@@ -39,27 +39,30 @@ const apiData = () => {
 };
 
 const postData = () => {
-  const newTrip = formData.retrieveNewTripData()
-  const addTripData = fetch('http://localhost:3001/api/v1/trips-form', {
+  const tripFromForm = indexFile.retrieveNewTripData();
+  const allData = apiData();
+  const currentTripID = (allData.allTrips.length) + 1;
+
+  const newTripData = fetch('http://localhost:3001/api/v1/trips-form', {
     method: 'POST',
     body: JSON.stringify(`{
-      id: ${bookedTrip.id}, 
+      id: ${currentTripID}, 
       userID: ${userID},
-      destinationID: ${newTrip.destinationID},
-      travelers: ${newTrip.travelers}, 
-      date: ${newTrip.date}, 
-      duration: ${newTrip.duration}, 
-      status: ${newTrip.status}, 
-      suggestedActivities: ${newTrip.suggestedActivities}
+      destinationID: ${tripFromForm.destinationID},
+      travelers: ${tripFromForm.travelers}, 
+      date: ${tripFromForm.date}, 
+      duration: ${tripFromForm.duration}, 
+      status: ${tripFromForm.status}, 
+      suggestedActivities: ${tripFromForm.suggestedActivities}
     }`),
     headers: {
       "Content-Type": "application/json"
     }    
   });
 
-  return Promise(addTripData)
+  return Promise(newTripData)
     .then(response => response.json())
-
+    .then(data => indexFile.addNewTrip(newTripData))
     .catch(err => displayErrorMessage(err));
 };
 

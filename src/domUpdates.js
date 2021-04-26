@@ -3,13 +3,13 @@ import Traveler from './traveler.js';
 import TripRepo from './trip-repo.js';
 import {apiData} from './api-data.js';
 
-const currentTripSection = document.querySelector('#currentTrip');
-const pastSection = document.querySelector('#pastTrips');
-const pendingTripSection = document.querySelector('#pendingTrips');
-const upcomingTripSection = document.querySelector('#upcomingTrips');
-
+const currentTripSection = document.getElementById('currentTrip');
+const pastSection = document.getElementById('pastTrips');
+const pendingTripSection = document.getElementById('pendingTrips');
+const upcomingTripSection = document.getElementById('upcomingTrips');
 const mainHome = document.querySelector('.main-home');
 const userForm = document.querySelector('.user-form');
+
 
 const domUpdates = {
   greetUser(traveler) {
@@ -63,10 +63,16 @@ const domUpdates = {
       });      
     }); 
   },
-
   displayPage() {
     mainHome.classList.toggle('hidden');
     userForm.classList.toggle('hidden');
+  },
+
+  estimateTripCost() {
+    apiData()
+      .then(data => {
+        const trip = new Trip(data.allTrips, data.allDestinations);
+    })
   },
 }
 

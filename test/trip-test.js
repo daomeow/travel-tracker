@@ -54,7 +54,7 @@ describe('Trip', () => {
     expect(trip1.suggestedActivities).to.deep.equal([]);
   });
 
-  // it('should calculate the total cost of the trip', () => {
-  //   expect(trip1.calculateCost(destination1)).to.be.equal(1010);
-  // });
+  it('should calculate the total cost of the trip', () => {
+    expect(trip1.calculateCost(destination1)).to.be.equal('1111.00');
+  });
 });
