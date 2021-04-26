@@ -25,7 +25,7 @@ formButton.addEventListener('click', domUpdates.displayPage);
 homeButton.addEventListener('click', domUpdates.displayPage);
 bookTripButton.addEventListener('click', domUpdates.retrieveNewTripData);
 
-// costButton.addEventListener('click', domUpdates.calculateNewTripCost);
+costButton.addEventListener('click', domUpdates.calculateNewTripCost);
 
 function onStartup() {
   apiData()
@@ -37,17 +37,7 @@ function onStartup() {
   });
 };
 
-// function retrieveNewTripData() {
-//   const formData = {
-//     "destinationID": formDestination.value,
-//     "travelers": numTravelers.value,
-//     "date": formDate.value,
-//     "duration": formDuration.value,
-//     "status": "pending",
-//     "suggestedActivities": []
-//   }
-//   return formData;   
-// };
+
 
 function addNewTrip(newTrip) {
   apiData()

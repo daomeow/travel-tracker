@@ -12,12 +12,11 @@ class Trip {
   }
 
   identifyDestination(tripID) {
-    return this.destination.find(destination => destination.id === tripID);
+    return this.destination.find(location => location.id === tripID);
   }
 
   calculateCost(location) {
     const totalLodging = this.duration * location.estimatedLodgingCostPerDay; 
-    console.log(this.duration)
     const totalFlightCost = location.estimatedFlightCostPerPerson * this.travelers;
     const total = (totalLodging + totalFlightCost) * 1.1;
     return total.toFixed(2);

@@ -1,13 +1,21 @@
-// import indexFile from './index.js';  
+// import './index.js';  
 // import domUpdates from './domUpdates.js'; 
 
-let userID = (Math.floor(Math.random() * 49) + 1);
+const userID = (Math.floor(Math.random() * 49) + 1);
 
 const displayErrorMessage = (err) => {
   const errorField = document.querySelector('.js-error');
   const message = err.message === 'Failed to fetch' ?
     'Something went wrong. Please check your internet connection' : err.message;
   errorField.innerText = message;
+}
+
+const checkForError = response => {
+  if (!response.ok) {
+      throw new Error('Something went wrong, please try again.');
+  } else {
+      return response.json();
+  }
 }
 
 const apiData = () => {
@@ -40,33 +48,27 @@ const apiData = () => {
 };
 
 const postData = (newTrip, IDs) => {
-  //put into body
-  // const tripFromForm = domUpdates.retrieveNewTripData();
-  // const allData = apiData();
-  // const currentTripID = (allData.allTrips.length) + 1;
-  console.log(newTrip)
-  console.log(IDs)
+  // console.log(newTrip)
+  // console.log(IDs)
 
-  // const newTripData = fetch('http://localhost:3001/api/v1/trips-form', {
-  //   method: 'POST',
-  //   body: JSON.stringify(`{
-  //     id: ${currentTripID}, 
-  //     userID: ${userID},
-  //     destinationID: ${tripFromForm.destinationID},
-  //     travelers: ${tripFromForm.travelers}, 
-  //     date: ${tripFromForm.date}, 
-  //     duration: ${tripFromForm.duration}, 
-  //     status: ${tripFromForm.status}, 
-  //     suggestedActivities: ${tripFromForm.suggestedActivities}
-  //   }`),
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   }    
-  // });
-
-
-  // return Promise()
+  const newTripData = fetch('http://localhost:3001/api/v1/trips-form', {
+    method: 'POST',
+    body: JSON.stringify(`{
+      id: ${IDs.id}, 
+      userID: ${IDs.userID},
+      destinationID: ${newTrip.destinationID},
+      travelers: ${newTrip.travelers}, 
+      date: ${newTrip.date}, 
+      duration: ${newTrip.duration}, 
+      status: ${newTrip.status}, 
+      suggestedActivities: ${newTrip.suggestedActivities}
+    }`),
+    headers: {
+      "Content-Type": "application/json"
+    }    
+  })
     // .then(response => response.json())
+    // .then(json => console.log(json))
     // .then(data => indexFile.addNewTrip(newTripData))
     // .catch(err => displayErrorMessage(err));
 };
