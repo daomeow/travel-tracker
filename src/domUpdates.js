@@ -1,7 +1,7 @@
 import TravelerRepo from './traveler-repo.js';
 import Traveler from './traveler.js';
 import TripRepo from './trip-repo.js';
-import {apiData} from './data/api-data.js';
+import {apiData} from './api-data.js';
 
 const currentTripSection = document.querySelector('#currentTrip');
 const pastSection = document.querySelector('#pastTrips');
@@ -22,7 +22,7 @@ const domUpdates = {
     .then(data => {
       const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
       const total = document.querySelector('#totalSpent');
-      let sum = tripRepo.calculateYearlyExpenditure(traveler, date);
+      const sum = tripRepo.calculateYearlyExpenditure(traveler, date);
       total.innerHTML = sum;
     })
   },
