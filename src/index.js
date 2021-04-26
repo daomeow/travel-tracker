@@ -15,15 +15,11 @@ const formButton = document.getElementById('formButton');
 const costButton = document.getElementById('costButton');
 const bookTripButton = document.getElementById('postButton');
 
-// const formDate = document.getElementById('formDate');
-// const formDuration = document.getElementById('duration');
-// const numTravelers = document.getElementById('numTravelers');
-// const formDestination = document.getElementById('destination');
 
 window.onload = onStartup();
 formButton.addEventListener('click', domUpdates.displayPage);
 homeButton.addEventListener('click', domUpdates.displayPage);
-bookTripButton.addEventListener('click', domUpdates.retrieveNewTripData);
+bookTripButton.addEventListener('click', domUpdates.addNewTrip);
 
 costButton.addEventListener('click', domUpdates.calculateNewTripCost);
 

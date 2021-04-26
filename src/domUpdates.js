@@ -15,6 +15,7 @@ const formDate = document.getElementById('formDate');
 const formDuration = document.getElementById('duration');
 const numTravelers = document.getElementById('numTravelers');
 const formDestination = document.getElementById('destination');
+const estimatedCost = document.querySelector('.form-cost')
 const formTotal = document.getElementById('totalCost');
 
 
@@ -84,6 +85,7 @@ const domUpdates = {
         const destination = trip.identifyDestination(tripID);
         const total = trip.calculateCost(destination);
         formTotal.innerHTML = total;
+        estimatedCost.classList.toggle('hidden');
     })
   },
 
@@ -99,47 +101,24 @@ const domUpdates = {
     return formData;   
   },
 
-  addNewTrip(newTrip) {
+  addNewTrip() {
     apiData()
     .then(data => {
       const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
       const currentTraveler = new Traveler(data.currentTraveler);
+      const formData = domUpdates.retrieveNewTripData();
       const destinationIDUserID = {
         "id": (tripRepo.allTrips.length) + 1,
         "userID": currentTraveler.id
-      }
-    return postData(newTrip, destinationIDUserID);
+      };
+      const allTripData = {
+        ...formData,
+        ...destinationIDUserID
+      };
+    return postData(allTripData);
     });
   },
 
-  // retrieveNewTripData() {
-  //   const formData = {
-  //     "destinationID": formDestination.value,
-  //     "travelers": numTravelers.value,
-  //     "date": formDate.value,
-  //     "duration": formDuration.value,
-  //     "status": "pending",
-  //     "suggestedActivities": []
-  //   }
-  //   return domUpdates.addNewTrip(formData);   
-  // },
-
-  // addNewTrip(newTrip) {
-  //   apiData()
-  //   .then(data => {
-  //     const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
-  //     const currentTraveler = new Traveler(data.currentTraveler);
-  //     const destinationIDUserID = {
-  //       "id": (tripRepo.allTrips.length) + 1,
-  //       "userID": currentTraveler.id
-  //     }
-  //   return postData(newTrip, destinationIDUserID);
-  //   });
-  // },
-
-
-
-  // const newTripData = Object.assign(userInput, {"id": currentTraveler.id})
 }
 
 export default domUpdates;

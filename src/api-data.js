@@ -47,15 +47,15 @@ const apiData = () => {
   .catch(err => displayErrorMessage(err));
 };
 
-const postData = (newTrip, IDs) => {
-  // console.log(newTrip)
+const postData = (newTrip) => {
+  console.log(newTrip)
   // console.log(IDs)
 
   const newTripData = fetch('http://localhost:3001/api/v1/trips-form', {
     method: 'POST',
     body: JSON.stringify(`{
-      id: ${IDs.id}, 
-      userID: ${IDs.userID},
+      id: ${newTrip.id}, 
+      userID: ${newTrip.userID},
       destinationID: ${newTrip.destinationID},
       travelers: ${newTrip.travelers}, 
       date: ${newTrip.date}, 
