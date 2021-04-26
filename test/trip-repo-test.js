@@ -139,6 +139,6 @@ describe('Trip Repo', () => {
   });
 
   it('should calculate the total amount spent on trips for the current year', () => {
-    expect(tripRepo.calculateYearlyExpenditure(1, date)).to.equal(5260);
+    expect(tripRepo.calculateYearlyExpenditure(1, date)).to.equal('5786.00');
   });
 });

@@ -53,7 +53,7 @@ class TripRepo {
   calculateTripCost(trip) {
     const totalLodging = trip.duration * trip.destination.estimatedLodgingCostPerDay; 
     const totalFlightCost = trip.destination.estimatedFlightCostPerPerson * trip.travelers;
-    const total = totalLodging + totalFlightCost;
+    const total = (totalLodging + totalFlightCost) * 1.1;
     return total;
   }
 
@@ -65,7 +65,7 @@ class TripRepo {
     const currentUserTrips = pastTrips.filter(trip => trip.userID === userID);
     const destinationArray = this.matchDestinationNames(currentUserTrips);
     const sum = destinationArray.reduce((total, trip) => total += this.calculateTripCost(trip), 0);
-    return sum;
+    return sum.toFixed(2);
   }
 }
 
