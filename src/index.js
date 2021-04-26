@@ -3,7 +3,7 @@ import TravelerRepo from './traveler-repo.js';
 import Traveler from './traveler.js';
 import TripRepo from './trip-repo.js';
 // import Trip from './trip.js'; 
-import {apiData} from './data/api-data.js';
+import {apiData, addTripData} from './data/api-data.js';
 import domUpdates from './domUpdates.js';                  
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)

@@ -8,7 +8,6 @@ const pastSection = document.querySelector('#pastTrips');
 const pendingTripSection = document.querySelector('#pendingTrips');
 const upcomingTripSection = document.querySelector('#upcomingTrips');
 
-const navButtons = document.querySelectorAll('#nav');
 const mainHome = document.querySelector('.main-home');
 const userForm = document.querySelector('.user-form');
 
