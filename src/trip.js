@@ -11,6 +11,10 @@ class Trip {
     this.destination = destination.destinations;
   }
 
+  identifyDestination(destinationID) {
+    return this.destination.find(trip => trip.id === this.destinationID);
+  }
+
   calculateCost(location) {
     const totalLodging = this.duration * location.estimatedLodgingCostPerDay; 
     const totalFlightCost = location.estimatedFlightCostPerPerson * this.travelers;

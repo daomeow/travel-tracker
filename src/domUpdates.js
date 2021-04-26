@@ -10,6 +10,11 @@ const upcomingTripSection = document.getElementById('upcomingTrips');
 const mainHome = document.querySelector('.main-home');
 const userForm = document.querySelector('.user-form');
 
+const formDate = document.getElementById('formDate');
+const formDuration = document.getElementById('duration');
+const numTravelers = document.getElementById('numTravelers');
+const formDestination = document.getElementById('destination');
+
 
 const domUpdates = {
   greetUser(traveler) {
@@ -72,7 +77,22 @@ const domUpdates = {
     apiData()
       .then(data => {
         const trip = new Trip(data.allTrips, data.allDestinations);
+        const currentTraveler = new Traveler(data.currentTraveler);
+
+        identifyDestination()
     })
+  },
+
+  retrieveNewTripData() {
+    const formData = {
+      "destinationID": formDestination.value,
+      "travelers": numTravelers.value,
+      "date": formDate.value,
+      "duration": formDuration.value,
+      "status": "pending",
+      "suggestedActivities": []
+    }
+    return formData;   
   },
 }
 
