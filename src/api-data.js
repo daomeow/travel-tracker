@@ -1,6 +1,8 @@
 // import './index.js';  
 // import domUpdates from './domUpdates.js'; 
 
+import domUpdates from "./domUpdates";
+
 const travelerID = (Math.floor(Math.random() * 49) + 1);
 
 const displayErrorMessage = (err) => {
@@ -28,10 +30,6 @@ const apiData = () => {
   const allTravelers = fetch('http://localhost:3001/api/v1/travelers')
     .then(response => response.json())
     .catch(err => displayErrorMessage(err));
-    
-  // const currentTraveler = fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
-  // .then(response => response.json())
-  // .catch(err => displayErrorMessage(err)); 
 
   const allTrips = fetch('http://localhost:3001/api/v1/trips')
     .then(response => response.json())
@@ -55,9 +53,6 @@ const apiData = () => {
 };
 
 const postData = (tripRepo, newTrip) => {
-  console.log(newTrip)
-
-
   const newTripData = fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
     body: JSON.stringify({
@@ -75,9 +70,8 @@ const postData = (tripRepo, newTrip) => {
     }    
   })
     .then(response => response.json())
-    // .then(json => console.log(json))
+    .then(data => domUpdates.reloadTraveler(travelerID))
     .catch(err => displayErrorMessage(err));
-    // indexFile.addNewTrip(newTripData)
     tripRepo.allTrips.push(newTripData);
 };
 

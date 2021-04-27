@@ -4,6 +4,7 @@ import TripRepo from './trip-repo.js';
 import Trip from './trip.js'; 
 import {apiData, postData} from './api-data.js';
 
+const currentDate = "2020/5/11";
 const currentTripSection = document.getElementById('currentTrip');
 const pastSection = document.getElementById('pastTrips');
 const pendingTripSection = document.getElementById('pendingTrips');
@@ -25,10 +26,10 @@ const dateError = document.querySelector('.date-message');
 const durationError = document.querySelector('.duration-message');
 const numberOfTravelersError = document.querySelector('.num-travelers-message');
 const destinationError = document.querySelector('.destination-message');
+const userName = document.getElementById('userName');
 
 const domUpdates = {
   greetUser(traveler) {
-    const userName = document.getElementById('userName');
     userName.innerHTML = traveler.name.split(' ')[0]; 
   },
 
@@ -153,7 +154,6 @@ const domUpdates = {
   },
 
   displayFormErrors() {
-    console.log(formDate.value)
     if (formDate.value === "") {
       dateError.classList.remove('hidden');
       return true;
@@ -169,6 +169,23 @@ const domUpdates = {
       domUpdates.calculateNewTripCost()
     }
   },
+
+  reloadTraveler(userID) {
+    apiData()
+    .then(data => {
+      const newTraveler = new Traveler(data.allTravelers);
+      const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
+      const total = document.querySelector('#totalSpent');
+      const sum = tripRepo.calculateYearlyExpenditure(userID, currentDate);
+      total.innerHTML = sum;
+
+      const traveler = newTraveler.findCurrentTraveler(userID);
+      // const traveler = travelerInfo.name;
+
+
+      userName.innerHTML = traveler.name.split(' ')[0]; 
+    })
+  }
 
 }
 

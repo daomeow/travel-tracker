@@ -22,7 +22,6 @@ const password = document.querySelector('.password');
 formButton.addEventListener('click', domUpdates.displayPage);
 homeButton.addEventListener('click', domUpdates.displayPage);
 bookTripButton.addEventListener('click', domUpdates.addNewTrip);
-// costButton.addEventListener('click', domUpdates.calculateNewTripCost);
 costButton.addEventListener('click', domUpdates.displayFormErrors);
 logInButton.addEventListener('click', findCurrentTraveler);
 handle.addEventListener('keydown', function(event) {
@@ -42,14 +41,6 @@ function findCurrentTraveler() {
     domUpdates.displayAllTrips(currentTraveler.id, currentDate);
   });
 };
-
-// function addNewTrip(newTrip) {
-//   apiData()
-//   .then(data => {
-//     const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
-//     tripRepo.allTrips.push(newTrip);
-//   })
-// }
 
 
 
