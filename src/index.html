@@ -28,20 +28,18 @@
     </header>
     <main>
       <h1 class="js-error"></h1>
-      
-      <section class="login">
+      <section class="login" id="logInPage">
         <h2 class="welcome">Hey, good to see you again!</h2>
         <h3 class="login-message">Please log in to get going.</h3>
         <section class="login-form">
           <label>UserName</label>
-          <input type="text" class="user-name">
+          <input type="text" class="handle">
           <label>Password</label>
-          <input type="text" class="password">
-          <button class="login-button">Submit</button>
+          <input type="password" class="password">
+          <button class="login-button" id="logInButton">Submit</button>
         </section>
         <!-- <img src="./images/faces.jpg" class="faces-img" alt="faces"> -->
       </section>
-
       <section class="main-home hidden">
         <section class="message-container">
           <h2 class="user-name">Hello <span id="userName"></span>!</h2>
@@ -93,7 +91,6 @@
         </div>
         <p class="form-cost hidden">The total cost for this trip will be $<span class="total-cost" id="totalCost"></span>. Please note, this includes our 10% agency fee.</p>
       </section>
-
     </main>
   </body>
 </html>

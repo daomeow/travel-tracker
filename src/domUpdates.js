@@ -17,7 +17,9 @@ const numTravelers = document.getElementById('numTravelers');
 const formDestination = document.getElementById('destination');
 const estimatedCost = document.querySelector('.form-cost')
 const formTotal = document.getElementById('totalCost');
-
+const handle = document.querySelector('.handle');
+const password = document.querySelector('.password');
+const logInPage = document.getElementById('logInPage');
 
 const domUpdates = {
   greetUser(traveler) {
@@ -118,6 +120,14 @@ const domUpdates = {
     return postData(allTripData);
     });
   },
+
+  userLogIn() {
+    console.log(password.value)
+    if (password.value === 'travel2020') {
+      logInPage.classList.toggle('hidden');
+      mainHome.classList.toggle('hidden');
+    }
+  }
 
 }
 

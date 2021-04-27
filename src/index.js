@@ -6,7 +6,6 @@ import Trip from './trip.js';
 import {apiData, postData} from './api-data.js';
 import domUpdates from './domUpdates.js';                  
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import './images/boulder.jpg'
 import './images/faces.jpg'
@@ -16,14 +15,14 @@ const homeButton = document.getElementById('homeButton');
 const formButton = document.getElementById('formButton');
 const costButton = document.getElementById('costButton');
 const bookTripButton = document.getElementById('postButton');
-
+const logInButton = document.getElementById('logInButton');
 
 window.onload = onStartup();
 formButton.addEventListener('click', domUpdates.displayPage);
 homeButton.addEventListener('click', domUpdates.displayPage);
 bookTripButton.addEventListener('click', domUpdates.addNewTrip);
-
 costButton.addEventListener('click', domUpdates.calculateNewTripCost);
+logInButton.addEventListener('click', domUpdates.userLogIn);
 
 function onStartup() {
   apiData()
@@ -35,15 +34,13 @@ function onStartup() {
   });
 };
 
-
-
-function addNewTrip(newTrip) {
-  apiData()
-  .then(data => {
-    const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
-    tripRepo.allTrips.push(newTrip);
-  })
-}
+// function addNewTrip(newTrip) {
+//   apiData()
+//   .then(data => {
+//     const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
+//     tripRepo.allTrips.push(newTrip);
+//   })
+// }
 
 
 
