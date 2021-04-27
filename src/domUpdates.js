@@ -10,14 +10,21 @@ const pendingTripSection = document.getElementById('pendingTrips');
 const upcomingTripSection = document.getElementById('upcomingTrips');
 const mainHome = document.querySelector('.main-home');
 const userForm = document.querySelector('.user-form');
-
 const formDate = document.getElementById('formDate');
 const formDuration = document.getElementById('duration');
 const numTravelers = document.getElementById('numTravelers');
 const formDestination = document.getElementById('destination');
 const estimatedCost = document.querySelector('.form-cost')
 const formTotal = document.getElementById('totalCost');
-
+const handle = document.querySelector('.handle');
+const password = document.querySelector('.password');
+const logInPage = document.getElementById('logInPage');
+const logInError = document.querySelector('.error-message');
+const formErrors = document.querySelectorAll('.form-message');
+const dateError = document.querySelector('.date-message');
+const durationError = document.querySelector('.duration-message');
+const numberOfTravelersError = document.querySelector('.num-travelers-message');
+const destinationError = document.querySelector('.destination-message');
 
 const domUpdates = {
   greetUser(traveler) {
@@ -86,12 +93,12 @@ const domUpdates = {
         const total = trip.calculateCost(destination);
         formTotal.innerHTML = total;
         estimatedCost.classList.toggle('hidden');
-    })
+      })
   },
 
   retrieveNewTripData() {
     const formData = {
-      "destinationID": formDestination.value,
+      "destinationID": Number(formDestination.value),
       "travelers": numTravelers.value,
       "date": formDate.value,
       "duration": formDuration.value,
@@ -104,20 +111,64 @@ const domUpdates = {
   addNewTrip() {
     apiData()
     .then(data => {
+      console.log(data)
       const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
       const currentTraveler = new Traveler(data.currentTraveler);
       const formData = domUpdates.retrieveNewTripData();
       const destinationIDUserID = {
         "id": (tripRepo.allTrips.length) + 1,
-        "userID": currentTraveler.id
+        "userID": Number(currentTraveler.id)
       };
       const allTripData = {
         ...formData,
         ...destinationIDUserID
       };
-    return postData(allTripData);
+      console.log(allTripData)
+    return postData(tripRepo, allTripData);
     });
+    mainHome.classList.toggle('hidden');
+    userForm.classList.toggle('hidden');
   },
+
+  validateUserLogIn() {
+    const travelerID = domUpdates.getCurrentTraveler();
+    if (password.value === 'travel2020' && (!isNaN(travelerID))) {
+      logInPage.classList.toggle('hidden');
+      mainHome.classList.toggle('hidden');
+    } else if (handle.value === "" || password === "" || password !== 'travel2020') {
+      logInError.classList.remove('hidden');
+    }
+  },
+
+  getCurrentTraveler() {
+    const userInput = handle.value.split(/([0-9]+)/);
+    const travelerID = parseInt(userInput[1]);
+    return travelerID;
+  },
+
+  clearLogInError(event) {
+    if (event.keyCode === 8) {
+      logInError.classList.add('hidden');
+    }
+  },
+
+  // displayFormErrors() {
+  //   if (formDate.value === "") {
+  //     dateError.classList.remove('hidden');
+  //     return true;
+  //   } else if (formDuration.value === "") {
+  //     durationError.classList.remove('hidden');
+  //     return true;
+  //   } else if (numTravelers.value === "") {
+  //     numberOfTravelersError.classList.remove('hidden');
+  //     return true;
+  //   } else if (formDestination.value === "") {
+  //     destinationError.classList.remove('hidden');
+  //   } else {
+  //     console.log('made it')
+  //     domUpdates.calculateNewTripCost()
+  //   }
+  // },
 
 }
 
