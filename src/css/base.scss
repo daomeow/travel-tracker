@@ -2,134 +2,17 @@
 @import '_user-form.scss';
 @import '_login.scss';
 @import '_header.scss';
+@import '_main-section.scss';
 
 // * {
 //   border: 1px solid red
 // }
 
+
+
+/* ***** Global Variables ***** */ 
 body {
   margin: 0;
   font-family: 'Cairo', sans-serif;
 }
 
-/* ***** iPhone 5/SE ***** */ 
-@media screen and (min-device-width: 320px) {
-
-  /* Mobile Main */
-  main {
-    align-items: center;
-    background-color: #ffffff;
-    width: 40.1rem;
-  }
-
-  .message-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .user-name,
-  .total-spent,
-  .total {
-    font-size: 2rem;
-    margin: 0;
-  }
-
-  .total-spent,
-  .total {
-    padding-bottom: 20px;
-  }
-
-   /* Mobile Trips Section */
-  .cards-container {
-    padding: 0 5rem;
-    justify-items: center;
-  }
-
-  article {
-    margin-bottom: 2rem;
-    background-color: $header-color;
-    height: 40rem;
-    box-shadow: 3px 3px rgba(0, 0, 0, 0.5);
-  }
-
-  .card-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #556B;
-  }
-
-  h3 {
-    font-size: 25px;
-  }
-
-  .trip-cards {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 5rem;
-  }
-  
-  .destination,
-  .date {
-    font-size: 1.5rem;
-    background-color: #bfc0c0;
-  }
-}
-
-// /* ***** Small Desktop - 2 Columns ***** */ 
-@media only screen and (min-width: 400px){
-
-  /* Small Main Desktop */
-  main {
-    width: 100%;
-    height: 100%;
-  }
-
-  .user-name,
-  .total-spent,
-  .total {
-    font-size: 2rem;
-    margin: 0;
-  }
-
-  .total-spent, 
-  .total {
-    padding-bottom: 20px;
-  }
-
-  .cards-container {
-    display: grid;
-    @include grid(2);
-    grid-gap: 2rem;
-    padding: 0;
-  }
-  
-  article {
-    width: 20rem;
-    height: 30rem;
-  }
-
-  .trip-cards {
-    padding: 0 2rem;
-  }
-
-  .destination, 
-  .date {
-    font-size: 20px;
-  }
-}
-
-// /* ***** Full Desktop - 4 Columns ***** */ 
-@media screen and (min-width: 1200px) {
-
-
-  .cards-container {
-    @include grid(4);
-  }
-}
-
-.hidden {
-  display: none;
-}
