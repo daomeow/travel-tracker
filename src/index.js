@@ -7,7 +7,9 @@ import {apiData, postData} from './api-data.js';
 import domUpdates from './domUpdates.js';                  
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
+import './images/turing-logo.png'
+import './images/boulder.jpg'
+import './images/faces.jpg'
 
 const currentDate = "2020/5/11";
 const homeButton = document.getElementById('homeButton');

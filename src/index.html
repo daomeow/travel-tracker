@@ -28,7 +28,21 @@
     </header>
     <main>
       <h1 class="js-error"></h1>
-      <section class="main-home">
+      
+      <section class="login">
+        <h2 class="welcome">Hey, good to see you again!</h2>
+        <h3 class="login-message">Please log in to get going.</h3>
+        <section class="login-form">
+          <label>UserName</label>
+          <input type="text" class="user-name">
+          <label>Password</label>
+          <input type="text" class="password">
+          <button class="login-button">Submit</button>
+        </section>
+        <!-- <img src="./images/faces.jpg" class="faces-img" alt="faces"> -->
+      </section>
+
+      <section class="main-home hidden">
         <section class="message-container">
           <h2 class="user-name">Hello <span id="userName"></span>!</h2>
           <p class="total-spent">In 2020 you've spent $<span class="total-spent" id="totalSpent"></span></p>

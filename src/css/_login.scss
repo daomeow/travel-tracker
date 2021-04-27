@@ -1,0 +1,52 @@
+/* ***** iPhone 5/SE ***** */ 
+@media screen and (min-device-width: 320px) {
+  .login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .welcome {
+    font-size: 2.3rem;
+    margin-bottom: 0;
+  }
+
+  .login-message {
+    font-size: 27px;
+    margin-top: 8px;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    width: 25rem;
+  }
+
+  label {
+    margin-top: 20px;
+    font-size: 22px;
+    margin-left: 7rem;
+  }
+
+  label,
+  input {
+    width: 12rem
+  }
+
+  .login-button {
+    margin-bottom: 20px;
+    width: 12.6rem;
+    margin: 2px 0 20px 10px;
+  }
+
+  // .boulder-img {
+  //   height: 35rem;
+  //   width: 35rem;
+  // }
+}
+/* ***** iPad & Desktop ***** */ 
+@media only screen and (min-width: 400px) {
+
+}
