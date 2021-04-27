@@ -1,8 +1,10 @@
 class Traveler {
-  constructor(userData) {
-    this.id = userData.id;
-    this.name = userData.name;
-    this.travelerType = userData.travelerType;
+  constructor(travelersData) {
+    this.allTravelers = travelersData.travelers;
+  }
+
+  findCurrentTraveler(travelerID) {
+    return this.allTravelers.find(user => user.id === travelerID);
   }
 }
 
