@@ -16,6 +16,8 @@ const formButton = document.getElementById('formButton');
 const costButton = document.getElementById('costButton');
 const bookTripButton = document.getElementById('postButton');
 const logInButton = document.getElementById('logInButton');
+const handle = document.querySelector('.handle');
+const password = document.querySelector('.password');
 
 // window.onload = onStartup();
 formButton.addEventListener('click', domUpdates.displayPage);
@@ -23,6 +25,13 @@ homeButton.addEventListener('click', domUpdates.displayPage);
 bookTripButton.addEventListener('click', domUpdates.addNewTrip);
 costButton.addEventListener('click', domUpdates.calculateNewTripCost);
 logInButton.addEventListener('click', findCurrentTraveler);
+handle.addEventListener('keydown', function(event) {
+  domUpdates.clearLogInError(event);
+});
+password.addEventListener('keydown', function(event) {
+  domUpdates.clearLogInError(event);
+});
+
 
 function findCurrentTraveler() {
   domUpdates.validateUserLogIn();

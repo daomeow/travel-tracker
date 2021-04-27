@@ -126,22 +126,31 @@ const domUpdates = {
   validateUserLogIn() {
     const travelerID = domUpdates.getCurrentTraveler()
     console.log(travelerID)
-    // if (password.value === 'travel2020') {
-    //   logInPage.classList.toggle('hidden');
-    //   mainHome.classList.toggle('hidden');
-    // }
-    logInPage.classList.toggle('hidden');
-    mainHome.classList.toggle('hidden');
+    if (password.value === 'travel2020') {
+      logInPage.classList.toggle('hidden');
+      mainHome.classList.toggle('hidden');
+    } else if (!travelerID || handle.value === "" || password === "" || password !== 'travel2020') {
+      logInError.classList.remove('hidden');
+    }
+
+    // logInPage.classList.toggle('hidden');
+    // mainHome.classList.toggle('hidden');
     // return apiData(travelerID);
   },
 
   getCurrentTraveler() {
     const userInput = handle.value.split(/([0-9]+)/);
     const travelerID = parseInt(userInput[1]);
-    if (userInput === "" || userInput.length < 2) {
-      logInError.classList.toggle('hidden');
-    }
+    // if (userInput === "" || userInput.length < 2) {
+    //   logInError.classList.toggle('hidden');
+    // }
     return travelerID;
+  },
+
+  clearLogInError(event) {
+    if (event.keyCode === 8) {
+      logInError.classList.add('hidden');
+    }
   },
 
 
