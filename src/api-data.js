@@ -35,7 +35,6 @@ const apiData = () => {
     
   return Promise.all([allTravelers, currentTraveler, allTrips, allDestinations])
     .then(data => {
-      console.log(data)
         const apiInfo = {};
         apiInfo.allTravelers = data[0];
         apiInfo.currentTraveler = data[1];

@@ -1,4 +1,3 @@
-// import TravelerRepo from './traveler-repo.js';
 import Traveler from './traveler.js';
 import TripRepo from './trip-repo.js';
 import Trip from './trip.js'; 
@@ -21,7 +20,6 @@ const handle = document.querySelector('.handle');
 const password = document.querySelector('.password');
 const logInPage = document.getElementById('logInPage');
 const logInError = document.querySelector('.error-message');
-const formErrors = document.querySelectorAll('.form-message');
 const dateError = document.querySelector('.date-message');
 const durationError = document.querySelector('.duration-message');
 const numberOfTravelersError = document.querySelector('.num-travelers-message');
@@ -38,8 +36,6 @@ const domUpdates = {
     } else if (handle.value === "" || password === "" || password !== 'travel2020') {
       logInError.classList.remove('hidden');
     };
-    // logInPage.classList.toggle('hidden');
-    // mainHome.classList.toggle('hidden');
   },
 
   getCurrentTraveler() {
@@ -49,7 +45,6 @@ const domUpdates = {
   },
 
   greetUser(traveler) {
-    console.log(traveler)
     userName.innerHTML = traveler.name.split(' ')[0]; 
   },
 
@@ -112,19 +107,6 @@ const domUpdates = {
     userForm.classList.toggle('hidden');
   },
 
-  // calculateNewTripCost() {
-  //   apiData()
-  //     .then(data => {
-  //       const userInput = domUpdates.retrieveNewTripData();
-  //       const trip = new Trip(userInput, data.allDestinations);
-  //       const tripID = parseInt(userInput.destinationID)
-  //       const destination = trip.identifyDestination(tripID);
-  //       const total = trip.calculateCost(destination);
-  //       formTotal.innerHTML = total;
-  //       estimatedCost.classList.toggle('hidden');
-  //     })
-  // },
-
   retrieveNewTripData() {
     const formData = {
       "destinationID": Number(formDestination.value),
@@ -140,7 +122,6 @@ const domUpdates = {
   addNewTrip() {
     apiData()
     .then(data => {
-      console.log(data)
       const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
       const currentTraveler = new Traveler(data.currentTraveler);
       const formData = domUpdates.retrieveNewTripData();
@@ -152,7 +133,6 @@ const domUpdates = {
         ...formData,
         ...destinationIDUserID
       };
-      console.log(allTripData)
     return postData(tripRepo, allTripData);
     });
     mainHome.classList.toggle('hidden');
@@ -172,12 +152,6 @@ const domUpdates = {
       })
   },
 
-  clearLogInError(event) {
-    if (event.keyCode === 8) {
-      logInError.classList.add('hidden');
-    }
-  },
-
   displayFormErrors() {
     if (formDate.value === "") {
       dateError.classList.remove('hidden');
@@ -195,6 +169,15 @@ const domUpdates = {
     }
   },
 
+  clearLogInError(event) {
+    if (event.keyCode === 8) {
+      logInError.classList.add('hidden');
+      dateError.classList.add('hidden');
+      durationError.classList.add('hidden');
+
+    }
+  },
+
   reloadTraveler(userID) {
     apiData()
     .then(data => {
@@ -206,8 +189,7 @@ const domUpdates = {
       const traveler = newTraveler.findCurrentTraveler(userID);
       userName.innerHTML = traveler.name.split(' ')[0]; 
     })
-  },
-
+  }
 }
 
 export default domUpdates;

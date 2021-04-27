@@ -1,11 +1,5 @@
 import './css/base.scss';
-import TravelerRepo from './traveler-repo.js';
-import Traveler from './traveler.js';
-import TripRepo from './trip-repo.js';
-import Trip from './trip.js'; 
-import {apiData, postData} from './api-data.js';
 import domUpdates from './domUpdates.js';                  
-
 import './images/turing-logo.png'
 import './images/boulder.jpg'
 import './images/faces.jpg'
@@ -17,6 +11,10 @@ const bookTripButton = document.getElementById('postButton');
 const logInButton = document.getElementById('logInButton');
 const handle = document.querySelector('.handle');
 const password = document.querySelector('.password');
+const dateError = document.getElementById('formDate');
+const durationError = document.getElementById('duration');
+const numberOfTravelersError = document.getElementById('numTravelers');
+const destinationError = document.getElementById('destination');
 
 formButton.addEventListener('click', domUpdates.displayPage);
 homeButton.addEventListener('click', domUpdates.displayPage);
@@ -27,6 +25,18 @@ handle.addEventListener('keydown', function(event) {
   domUpdates.clearLogInError(event);
 });
 password.addEventListener('keydown', function(event) {
+  domUpdates.clearLogInError(event);
+});
+dateError.addEventListener('keydown', function(event) {
+  domUpdates.clearLogInError(event);
+});
+durationError.addEventListener('keydown', function(event) {
+  domUpdates.clearLogInError(event);
+});
+numberOfTravelersError.addEventListener('keydown', function(event) {
+  domUpdates.clearLogInError(event);
+});
+destinationError.addEventListener('keydown', function(event) {
   domUpdates.clearLogInError(event);
 });
 
