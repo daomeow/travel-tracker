@@ -152,23 +152,23 @@ const domUpdates = {
     }
   },
 
-  displayFormErrors() {
-    if (formDate.value === "") {
-      dateError.classList.remove('hidden');
-      return true;
-    } else if (formDuration.value === "") {
-      durationError.classList.remove('hidden');
-      return true;
-    } else if (numTravelers.value === "") {
-      numberOfTravelersError.classList.remove('hidden');
-      return true;
-    } else if (formDestination.value === "") {
-      destinationError.classList.remove('hidden');
-    } else {
-      console.log('made it')
-      domUpdates.calculateNewTripCost()
-    }
-  },
+  // displayFormErrors() {
+  //   if (formDate.value === "") {
+  //     dateError.classList.remove('hidden');
+  //     return true;
+  //   } else if (formDuration.value === "") {
+  //     durationError.classList.remove('hidden');
+  //     return true;
+  //   } else if (numTravelers.value === "") {
+  //     numberOfTravelersError.classList.remove('hidden');
+  //     return true;
+  //   } else if (formDestination.value === "") {
+  //     destinationError.classList.remove('hidden');
+  //   } else {
+  //     console.log('made it')
+  //     domUpdates.calculateNewTripCost()
+  //   }
+  // },
 
 }
 
