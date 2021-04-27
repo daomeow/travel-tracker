@@ -1,8 +1,4 @@
-// import './index.js';  
-// import domUpdates from './domUpdates.js'; 
-
 import domUpdates from "./domUpdates";
-
 const travelerID = (Math.floor(Math.random() * 49) + 1);
 
 const displayErrorMessage = (err) => {
@@ -21,8 +17,6 @@ const checkForError = response => {
 }
 
 const apiData = () => {
-  // console.log(userID)
-
   const currentTraveler = fetch(`http://localhost:3001/api/v1/travelers/${travelerID}`)
     .then(response => response.json())
     .catch(err => displayErrorMessage(err)); 
@@ -74,7 +68,6 @@ const postData = (tripRepo, newTrip) => {
     .catch(err => displayErrorMessage(err));
     tripRepo.allTrips.push(newTripData);
 };
-
 
 export {
   apiData,

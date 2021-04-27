@@ -1,4 +1,4 @@
-import TravelerRepo from './traveler-repo.js';
+// import TravelerRepo from './traveler-repo.js';
 import Traveler from './traveler.js';
 import TripRepo from './trip-repo.js';
 import Trip from './trip.js'; 
@@ -27,9 +27,29 @@ const durationError = document.querySelector('.duration-message');
 const numberOfTravelersError = document.querySelector('.num-travelers-message');
 const destinationError = document.querySelector('.destination-message');
 const userName = document.getElementById('userName');
+const annualTotal = document.getElementById('totalSpent');
 
 const domUpdates = {
+  validateUserLogIn() {
+    const travelerID = domUpdates.getCurrentTraveler();
+    if (password.value === 'travel2020' && (!isNaN(travelerID))) {
+      logInPage.classList.toggle('hidden');
+      mainHome.classList.toggle('hidden');
+    } else if (handle.value === "" || password === "" || password !== 'travel2020') {
+      logInError.classList.remove('hidden');
+    };
+    // logInPage.classList.toggle('hidden');
+    // mainHome.classList.toggle('hidden');
+  },
+
+  getCurrentTraveler() {
+    const userInput = handle.value.split(/([0-9]+)/);
+    const travelerID = parseInt(userInput[1]);
+    return travelerID;
+  },
+
   greetUser(traveler) {
+    console.log(traveler)
     userName.innerHTML = traveler.name.split(' ')[0]; 
   },
 
@@ -39,7 +59,17 @@ const domUpdates = {
       const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
       const total = document.querySelector('#totalSpent');
       const sum = tripRepo.calculateYearlyExpenditure(traveler, date);
-      total.innerHTML = sum;
+      annualTotal.innerHTML = sum;
+    });
+  },
+
+  loadTraveler() {
+    domUpdates.validateUserLogIn();
+    apiData()
+    .then(data => {
+      domUpdates.greetUser(data.currentTraveler);
+      domUpdates.totalSpent(data.currentTraveler.id, currentDate);
+      domUpdates.displayAllTrips(data.currentTraveler.id, currentDate);
     });
   },
 
@@ -51,14 +81,12 @@ const domUpdates = {
       const currentTrip = tripRepo.findUserCurrentTrip(userID, date);
       const upcomingTrips = tripRepo.findUserUpcomingTrips(userID, date);
       const pendingTrips = tripRepo.findUserPendingTrips(userID, date);
-
       pastTrips.map(trip => {
         pastSection.innerHTML += `
           <p class="destination">${trip.destination}<br><sub class="date">${trip.date}</sub></p>
         `
       });
 
-      // ADD MSG: YOU ARE CURRENTLY NOT ON A TRIP TODAY (DATE)
       currentTrip.map(trip => {
         currentTripSection.innerHTML += `
           <p class="destination">${trip.destination}<br><sub class="date">${trip.date}</sub></p>
@@ -71,7 +99,6 @@ const domUpdates = {
         `
       });
 
-      // ADD MSG: YOU ARE CURRENTLY HAVE NO UPCOMING PENDING TRIPS
       pendingTrips.map(trip => {
         pendingTripSection.innerHTML += `
           <p class="destination">${trip.destination}<br><sub class="date">${trip.date}</sub></p>
@@ -79,23 +106,24 @@ const domUpdates = {
       });      
     }); 
   },
+
   displayPage() {
     mainHome.classList.toggle('hidden');
     userForm.classList.toggle('hidden');
   },
 
-  calculateNewTripCost() {
-    apiData()
-      .then(data => {
-        const userInput = domUpdates.retrieveNewTripData();
-        const trip = new Trip(userInput, data.allDestinations);
-        const tripID = parseInt(userInput.destinationID)
-        const destination = trip.identifyDestination(tripID);
-        const total = trip.calculateCost(destination);
-        formTotal.innerHTML = total;
-        estimatedCost.classList.toggle('hidden');
-      })
-  },
+  // calculateNewTripCost() {
+  //   apiData()
+  //     .then(data => {
+  //       const userInput = domUpdates.retrieveNewTripData();
+  //       const trip = new Trip(userInput, data.allDestinations);
+  //       const tripID = parseInt(userInput.destinationID)
+  //       const destination = trip.identifyDestination(tripID);
+  //       const total = trip.calculateCost(destination);
+  //       formTotal.innerHTML = total;
+  //       estimatedCost.classList.toggle('hidden');
+  //     })
+  // },
 
   retrieveNewTripData() {
     const formData = {
@@ -131,20 +159,17 @@ const domUpdates = {
     userForm.classList.toggle('hidden');
   },
 
-  validateUserLogIn() {
-    const travelerID = domUpdates.getCurrentTraveler();
-    if (password.value === 'travel2020' && (!isNaN(travelerID))) {
-      logInPage.classList.toggle('hidden');
-      mainHome.classList.toggle('hidden');
-    } else if (handle.value === "" || password === "" || password !== 'travel2020') {
-      logInError.classList.remove('hidden');
-    }
-  },
-
-  getCurrentTraveler() {
-    const userInput = handle.value.split(/([0-9]+)/);
-    const travelerID = parseInt(userInput[1]);
-    return travelerID;
+  calculateNewTripCost() {
+    apiData()
+      .then(data => {
+        const userInput = domUpdates.retrieveNewTripData();
+        const trip = new Trip(userInput, data.allDestinations);
+        const tripID = parseInt(userInput.destinationID)
+        const destination = trip.identifyDestination(tripID);
+        const total = trip.calculateCost(destination);
+        formTotal.innerHTML = total;
+        estimatedCost.classList.toggle('hidden');
+      })
   },
 
   clearLogInError(event) {
@@ -178,14 +203,10 @@ const domUpdates = {
       const total = document.querySelector('#totalSpent');
       const sum = tripRepo.calculateYearlyExpenditure(userID, currentDate);
       total.innerHTML = sum;
-
       const traveler = newTraveler.findCurrentTraveler(userID);
-      // const traveler = travelerInfo.name;
-
-
       userName.innerHTML = traveler.name.split(' ')[0]; 
     })
-  }
+  },
 
 }
 
