@@ -22,7 +22,8 @@ const password = document.querySelector('.password');
 formButton.addEventListener('click', domUpdates.displayPage);
 homeButton.addEventListener('click', domUpdates.displayPage);
 bookTripButton.addEventListener('click', domUpdates.addNewTrip);
-costButton.addEventListener('click', domUpdates.calculateNewTripCost);
+// costButton.addEventListener('click', domUpdates.calculateNewTripCost);
+costButton.addEventListener('click', domUpdates.displayFormErrors);
 logInButton.addEventListener('click', findCurrentTraveler);
 handle.addEventListener('keydown', function(event) {
   domUpdates.clearLogInError(event);
