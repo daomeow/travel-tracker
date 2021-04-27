@@ -4,6 +4,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 63rem;
+    background-image: url("../images/faces.jpg");
   }
 
   .welcome {
@@ -15,6 +17,11 @@
     font-size: 27px;
     margin-top: 8px;
   }
+
+  .welcome,
+  .login-message {
+   color: #4c7e80;
+  }
   
   .login-form {
     display: flex;
@@ -22,6 +29,7 @@
     align-items: center;
     border: 1px solid black;
     width: 25rem;
+    background-color: white;
   }
 
   .login-label {
@@ -54,7 +62,28 @@
      margin-top: 0;
   }
 }
+
+
+// /* ***** iPad & Desktop ***** */ 
+// @media only screen and (min-device-width: 768) {
+//   .login {
+//     height: 35rem;
+//   }
+
+// }
+
 /* ***** iPad & Desktop ***** */ 
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 2500px) {
+  .login {
+    height: 71rem;
+  }
+
+  .welcome {
+    font-size: 4rem;
+  }
+
+  .login-message {
+    font-size: 2.5rem;
+  }
 
 }
