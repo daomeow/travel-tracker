@@ -55,7 +55,7 @@ const apiData = () => {
 
 const postData = (newTrip) => {
   console.log(newTrip)
-  // console.log(IDs)
+
 
   const newTripData = fetch('http://localhost:3001/api/v1/trips-form', {
     method: 'POST',

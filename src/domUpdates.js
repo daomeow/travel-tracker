@@ -84,7 +84,7 @@ const domUpdates = {
   },
 
   calculateNewTripCost() {
-    const errorMessages = domUpdates.displayFormErrors()
+    // const errorMessages = domUpdates.displayFormErrors()
     apiData()
       .then(data => {
         const userInput = domUpdates.retrieveNewTripData();
@@ -92,10 +92,13 @@ const domUpdates = {
         const tripID = parseInt(userInput.destinationID)
         const destination = trip.identifyDestination(tripID);
         const total = trip.calculateCost(destination);
-        if (!errorMessages) {
-          formTotal.innerHTML = total;
-          estimatedCost.classList.toggle('hidden');
-        };
+        formTotal.innerHTML = total;
+        estimatedCost.classList.toggle('hidden');
+
+        // if (!errorMessages) {
+        //   formTotal.innerHTML = total;
+        //   estimatedCost.classList.toggle('hidden');
+        // };
       })
   },
 
@@ -158,21 +161,22 @@ const domUpdates = {
     }
   },
 
-  displayFormErrors() {
-    console.log('here')
-    if (formDate.value === "") {
-      dateError.classList.remove('hidden');
-      return true;
-    } else if (formDuration.value === "") {
-      durationError.classList.remove('hidden');
-    } else if (numTravelers.value === "") {
-      numberOfTravelersError.classList.remove('hidden');
-    } else if (formDestination.value === "") {
-      datdestinationErroreError.classList.remove('hidden');
-    }
-    return false;
-    
-  },
+  // displayFormErrors() {
+  //   if (formDate.value === "") {
+  //     dateError.classList.remove('hidden');
+  //     return true;
+  //   } else if (formDuration.value === "") {
+  //     durationError.classList.remove('hidden');
+  //     return true;
+  //   } else if (numTravelers.value === "") {
+  //     numberOfTravelersError.classList.remove('hidden');
+  //     return true;
+  //   } else if (formDestination.value === "") {
+  //     destinationError.classList.remove('hidden');
+  //   } else {
+  //     return false;
+  //   }
+  // },
 
 }
 
@@ -180,14 +184,3 @@ export default domUpdates;
 
 
 
-
-// const dateError = document.querySelector('.date-message');
-// const durationError = document.querySelector('.duration-message');
-// const numberOfTravelersError = document.querySelector('.num-travelers-message');
-// const destinationError = document.querySelector('.destination-message');
-
-
-// const formDate = document.getElementById('formDate');
-// const formDuration = document.getElementById('duration');
-// const numTravelers = document.getElementById('numTravelers');
-// const formDestination = document.getElementById('destination');
