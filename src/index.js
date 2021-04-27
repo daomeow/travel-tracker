@@ -17,14 +17,15 @@ const costButton = document.getElementById('costButton');
 const bookTripButton = document.getElementById('postButton');
 const logInButton = document.getElementById('logInButton');
 
-window.onload = onStartup();
+// window.onload = onStartup();
 formButton.addEventListener('click', domUpdates.displayPage);
 homeButton.addEventListener('click', domUpdates.displayPage);
 bookTripButton.addEventListener('click', domUpdates.addNewTrip);
 costButton.addEventListener('click', domUpdates.calculateNewTripCost);
-logInButton.addEventListener('click', domUpdates.userLogIn);
+logInButton.addEventListener('click', findCurrentTraveler);
 
-function onStartup() {
+function findCurrentTraveler() {
+  domUpdates.validateUserLogIn();
   apiData()
   .then(data => {
     const currentTraveler = new Traveler(data.currentTraveler);

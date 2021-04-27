@@ -19,13 +19,19 @@ const checkForError = response => {
 }
 
 const apiData = () => {
+  console.log(userID)
+
+  const currentTraveler = fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
+    .then(response => response.json())
+    .catch(err => displayErrorMessage(err)); 
+
   const allTravelers = fetch('http://localhost:3001/api/v1/travelers')
     .then(response => response.json())
     .catch(err => displayErrorMessage(err));
     
-  const currentTraveler = fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
-  .then(response => response.json())
-  .catch(err => displayErrorMessage(err)); 
+  // const currentTraveler = fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
+  // .then(response => response.json())
+  // .catch(err => displayErrorMessage(err)); 
 
   const allTrips = fetch('http://localhost:3001/api/v1/trips')
     .then(response => response.json())

@@ -24,14 +24,14 @@
     width: 25rem;
   }
 
-  label {
+  .login-label {
     margin-top: 20px;
     font-size: 22px;
     margin-left: 7rem;
   }
 
-  label,
-  input {
+  .login-label,
+  .login-input {
     width: 12rem
   }
 
@@ -39,6 +39,19 @@
     margin-bottom: 20px;
     width: 12.6rem;
     margin: 2px 0 20px 10px;
+  }
+  
+  .login-error {
+    display: flex;
+    justify-content: center;
+    height: 2rem;
+    width: 25rem;
+  }
+
+  .error-message {
+    color: red;
+    font-weight: bold;
+     margin-top: 0;
   }
 }
 /* ***** iPad & Desktop ***** */ 

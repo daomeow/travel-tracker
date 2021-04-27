@@ -32,11 +32,14 @@
         <h2 class="welcome">Hey, good to see you again!</h2>
         <h3 class="login-message">Please log in to get going.</h3>
         <section class="login-form">
-          <label>UserName</label>
-          <input type="text" class="handle">
-          <label>Password</label>
-          <input type="password" class="password">
+          <label class="login-label">UserName</label>
+          <input type="text" class="handle login-input">
+          <label class="login-label">Password</label>
+          <input type="password" class="password login-input">
           <button class="login-button" id="logInButton">Submit</button>
+          <section class="login-error">
+            <p class="error-message hidden">*Please enter a valid username and password*</p>
+          </section>
         </section>
         <!-- <img src="./images/faces.jpg" class="faces-img" alt="faces"> -->
       </section>

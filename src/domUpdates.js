@@ -10,7 +10,6 @@ const pendingTripSection = document.getElementById('pendingTrips');
 const upcomingTripSection = document.getElementById('upcomingTrips');
 const mainHome = document.querySelector('.main-home');
 const userForm = document.querySelector('.user-form');
-
 const formDate = document.getElementById('formDate');
 const formDuration = document.getElementById('duration');
 const numTravelers = document.getElementById('numTravelers');
@@ -20,6 +19,7 @@ const formTotal = document.getElementById('totalCost');
 const handle = document.querySelector('.handle');
 const password = document.querySelector('.password');
 const logInPage = document.getElementById('logInPage');
+const logInError = document.querySelector('.error-message');
 
 const domUpdates = {
   greetUser(traveler) {
@@ -119,15 +119,31 @@ const domUpdates = {
       };
     return postData(allTripData);
     });
+    mainHome.classList.toggle('hidden');
+    userForm.classList.toggle('hidden');
   },
 
-  userLogIn() {
-    console.log(password.value)
-    if (password.value === 'travel2020') {
-      logInPage.classList.toggle('hidden');
-      mainHome.classList.toggle('hidden');
+  validateUserLogIn() {
+    const travelerID = domUpdates.getCurrentTraveler()
+    console.log(travelerID)
+    // if (password.value === 'travel2020') {
+    //   logInPage.classList.toggle('hidden');
+    //   mainHome.classList.toggle('hidden');
+    // }
+    logInPage.classList.toggle('hidden');
+    mainHome.classList.toggle('hidden');
+    // return apiData(travelerID);
+  },
+
+  getCurrentTraveler() {
+    const userInput = handle.value.split(/([0-9]+)/);
+    const travelerID = parseInt(userInput[1]);
+    if (userInput === "" || userInput.length < 2) {
+      logInError.classList.toggle('hidden');
     }
-  }
+    return travelerID;
+  },
+
 
 }
 
