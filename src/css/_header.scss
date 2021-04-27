@@ -1,0 +1,143 @@
+/* ***** iPhone 5/SE ***** */ 
+@media screen and (min-device-width: 320px) {
+  header {
+    background-color: $header-color;
+    margin: 0;
+    width: 40.1rem;
+  }
+  .user-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 15px 0 0;
+  }
+  
+  .lower-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .fa-user {
+    font-size: 20px;
+  }
+  
+  .user-handle {
+    font-size: 17px;
+  }
+  
+  .app-name-container {
+    @include row;
+  }
+
+  .app-name {
+    font-size: 30px;
+    margin-top: 5px;
+  }
+
+  .fa-bolt {
+    font-size: 20px;
+    padding: 14px 15px 0 2px;
+  }
+
+  .nav-container {
+    @include row;
+    font-size: 20px;
+    list-style-type: none;
+    padding-left: 10px;
+    margin-top: 0;
+  }
+
+  .fa-home,
+  .fa-plane-departure {
+    padding-left: 20px;;
+  }
+
+  .nav {
+    padding-right: 35px;
+  }
+
+  .js-error {
+
+    margin-left: 2rem;
+    color: red;
+  }
+}
+
+/* ***** Small Desktop - 2 Columns ***** */ 
+@media only screen and (min-width: 400px){
+  header {
+    width: 100%
+  }
+
+  .fa-user,
+  .user-handle {
+    font-size: 15px;
+  }
+
+  .nav-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+  }
+
+  .fa-home,
+  .fa-plane-departure {
+    padding-right: 3px;
+  }
+
+  .app-name {
+    font-size: 2rem;
+  }
+
+  .fa-bolt {
+    font-size: 23px;
+    padding: 14px 15px 0 5px;
+  }
+
+  .js-error {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* ***** Full Desktop - 4 Columns ***** */ 
+@media screen and (min-width: 1200px) {
+  .nav-container {
+    @include row;
+    font-size: 23px;
+  }
+
+  .user-container {
+    padding: 10px 15px 0 0;
+  }
+  
+  .lower-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .fa-user {
+    font-size: 20px;
+    padding-right: 3px;
+  }
+  
+  .user-handle {
+    font-size: 18px;
+  }
+
+  .app-name {
+    font-size: 3.5rem;
+    margin-top: 5px;
+  }
+
+  .fa-bolt {
+    font-size: 2.5rem;
+    padding: 20px 15px 0 10px;
+  }
+
+  .js-error {
+    display: flex;
+    justify-content: center;
+  }
+}
