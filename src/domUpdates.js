@@ -84,7 +84,6 @@ const domUpdates = {
   },
 
   calculateNewTripCost() {
-    // const errorMessages = domUpdates.displayFormErrors()
     apiData()
       .then(data => {
         const userInput = domUpdates.retrieveNewTripData();
@@ -94,17 +93,12 @@ const domUpdates = {
         const total = trip.calculateCost(destination);
         formTotal.innerHTML = total;
         estimatedCost.classList.toggle('hidden');
-
-        // if (!errorMessages) {
-        //   formTotal.innerHTML = total;
-        //   estimatedCost.classList.toggle('hidden');
-        // };
       })
   },
 
   retrieveNewTripData() {
     const formData = {
-      "destinationID": formDestination.value,
+      "destinationID": Number(formDestination.value),
       "travelers": numTravelers.value,
       "date": formDate.value,
       "duration": formDuration.value,
@@ -117,36 +111,33 @@ const domUpdates = {
   addNewTrip() {
     apiData()
     .then(data => {
+      console.log(data)
       const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
       const currentTraveler = new Traveler(data.currentTraveler);
       const formData = domUpdates.retrieveNewTripData();
       const destinationIDUserID = {
         "id": (tripRepo.allTrips.length) + 1,
-        "userID": currentTraveler.id
+        "userID": Number(currentTraveler.id)
       };
       const allTripData = {
         ...formData,
         ...destinationIDUserID
       };
-    return postData(allTripData);
+      console.log(allTripData)
+    return postData(tripRepo, allTripData);
     });
     mainHome.classList.toggle('hidden');
     userForm.classList.toggle('hidden');
   },
 
   validateUserLogIn() {
-    const travelerID = domUpdates.getCurrentTraveler()
-    console.log(travelerID)
-    if (password.value === 'travel2020') {
+    const travelerID = domUpdates.getCurrentTraveler();
+    if (password.value === 'travel2020' && (!isNaN(travelerID))) {
       logInPage.classList.toggle('hidden');
       mainHome.classList.toggle('hidden');
-    } else if (!travelerID || handle.value === "" || password === "" || password !== 'travel2020') {
+    } else if (handle.value === "" || password === "" || password !== 'travel2020') {
       logInError.classList.remove('hidden');
     }
-
-    // logInPage.classList.toggle('hidden');
-    // mainHome.classList.toggle('hidden');
-    // return apiData(travelerID);
   },
 
   getCurrentTraveler() {
@@ -161,22 +152,23 @@ const domUpdates = {
     }
   },
 
-  // displayFormErrors() {
-  //   if (formDate.value === "") {
-  //     dateError.classList.remove('hidden');
-  //     return true;
-  //   } else if (formDuration.value === "") {
-  //     durationError.classList.remove('hidden');
-  //     return true;
-  //   } else if (numTravelers.value === "") {
-  //     numberOfTravelersError.classList.remove('hidden');
-  //     return true;
-  //   } else if (formDestination.value === "") {
-  //     destinationError.classList.remove('hidden');
-  //   } else {
-  //     return false;
-  //   }
-  // },
+  displayFormErrors() {
+    if (formDate.value === "") {
+      dateError.classList.remove('hidden');
+      return true;
+    } else if (formDuration.value === "") {
+      durationError.classList.remove('hidden');
+      return true;
+    } else if (numTravelers.value === "") {
+      numberOfTravelersError.classList.remove('hidden');
+      return true;
+    } else if (formDestination.value === "") {
+      destinationError.classList.remove('hidden');
+    } else {
+      console.log('made it')
+      domUpdates.calculateNewTripCost()
+    }
+  },
 
 }
 

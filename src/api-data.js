@@ -1,7 +1,7 @@
 // import './index.js';  
 // import domUpdates from './domUpdates.js'; 
 
-const userID = (Math.floor(Math.random() * 49) + 1);
+const travelerID = (Math.floor(Math.random() * 49) + 1);
 
 const displayErrorMessage = (err) => {
   const errorField = document.querySelector('.js-error');
@@ -19,9 +19,9 @@ const checkForError = response => {
 }
 
 const apiData = () => {
-  console.log(userID)
+  // console.log(userID)
 
-  const currentTraveler = fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
+  const currentTraveler = fetch(`http://localhost:3001/api/v1/travelers/${travelerID}`)
     .then(response => response.json())
     .catch(err => displayErrorMessage(err)); 
 
@@ -43,6 +43,7 @@ const apiData = () => {
     
   return Promise.all([allTravelers, currentTraveler, allTrips, allDestinations])
     .then(data => {
+      console.log(data)
         const apiInfo = {};
         apiInfo.allTravelers = data[0];
         apiInfo.currentTraveler = data[1];
@@ -53,30 +54,31 @@ const apiData = () => {
   .catch(err => displayErrorMessage(err));
 };
 
-const postData = (newTrip) => {
+const postData = (tripRepo, newTrip) => {
   console.log(newTrip)
 
 
-  const newTripData = fetch('http://localhost:3001/api/v1/trips-form', {
+  const newTripData = fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
-    body: JSON.stringify(`{
-      id: ${newTrip.id}, 
-      userID: ${newTrip.userID},
-      destinationID: ${newTrip.destinationID},
-      travelers: ${newTrip.travelers}, 
-      date: ${newTrip.date}, 
-      duration: ${newTrip.duration}, 
-      status: ${newTrip.status}, 
-      suggestedActivities: ${newTrip.suggestedActivities}
-    }`),
+    body: JSON.stringify({
+      id: newTrip.id, 
+      userID: newTrip.userID,
+      destinationID: newTrip.destinationID,
+      travelers: newTrip.travelers, 
+      date: newTrip.date, 
+      duration: newTrip.duration, 
+      status: newTrip.status, 
+      suggestedActivities: newTrip.suggestedActivities
+    }),
     headers: {
       "Content-Type": "application/json"
     }    
   })
-    // .then(response => response.json())
+    .then(response => response.json())
     // .then(json => console.log(json))
-    // .then(data => indexFile.addNewTrip(newTripData))
-    // .catch(err => displayErrorMessage(err));
+    .catch(err => displayErrorMessage(err));
+    // indexFile.addNewTrip(newTripData)
+    tripRepo.allTrips.push(newTripData);
 };
 
 
