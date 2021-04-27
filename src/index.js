@@ -19,7 +19,6 @@ const logInButton = document.getElementById('logInButton');
 const handle = document.querySelector('.handle');
 const password = document.querySelector('.password');
 
-// window.onload = onStartup();
 formButton.addEventListener('click', domUpdates.displayPage);
 homeButton.addEventListener('click', domUpdates.displayPage);
 bookTripButton.addEventListener('click', domUpdates.addNewTrip);
@@ -31,7 +30,6 @@ handle.addEventListener('keydown', function(event) {
 password.addEventListener('keydown', function(event) {
   domUpdates.clearLogInError(event);
 });
-
 
 function findCurrentTraveler() {
   domUpdates.validateUserLogIn();

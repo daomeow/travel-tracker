@@ -141,9 +141,6 @@ const domUpdates = {
   getCurrentTraveler() {
     const userInput = handle.value.split(/([0-9]+)/);
     const travelerID = parseInt(userInput[1]);
-    // if (userInput === "" || userInput.length < 2) {
-    //   logInError.classList.toggle('hidden');
-    // }
     return travelerID;
   },
 
