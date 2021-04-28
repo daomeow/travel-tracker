@@ -51,25 +51,13 @@ In the terminal, run:
 npm start
 ```
 
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
-
-```bash
-Project is running at http://localhost:8080/
-```
-
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
+Go to `http://localhost:8080/` in your browser to view code running in the browser.
 
 ---
 
-## Test Files Organization
+## Running Tests
 
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
+Run test suites using the command:
 
 ```bash
 npm test
