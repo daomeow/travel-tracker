@@ -113,6 +113,7 @@ const domUpdates = {
   displayPage() {
     mainHome.classList.toggle('hidden');
     userForm.classList.toggle('hidden');
+    domUpdates.clearForm();
   },
 
   retrieveNewTripData() {
@@ -156,7 +157,7 @@ const domUpdates = {
         const destination = trip.identifyDestination(tripID);
         const total = trip.calculateCost(destination);
         formTotal.innerHTML = total;
-        estimatedCost.classList.toggle('hidden');
+        estimatedCost.classList.remove('hidden');
       })
   },
 
@@ -197,10 +198,19 @@ const domUpdates = {
       const traveler = newTraveler.findCurrentTraveler(userID);
       userName.innerHTML = traveler.name.split(' ')[0]; 
     })
+  },
+
+  clearForm() {
+    formDate.value = "";
+    formDuration.value = "";
+    numTravelers.value = "";
+    formDestination.value = "";
+    estimatedCost.classList.add('hidden');
+    dateError.classList.add('hidden');
+    durationError.classList.add('hidden');
+    numberOfTravelersError.classList.add('hidden');
+    destinationError.classList.add('hidden');
   }
 }
 
 export default domUpdates;
-
-
-
