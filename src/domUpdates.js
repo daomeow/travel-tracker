@@ -32,16 +32,12 @@ const addTripButton = document.querySelector('.document');
 const domUpdates = {
   validateUserLogIn() {
     const travelerID = domUpdates.getCurrentTraveler();
-    // if (password.value === 'travel2020' && (!isNaN(travelerID))) {
-    //   logInPage.classList.toggle('hidden');
-    //   mainHome.classList.toggle('hidden');
-    // } else if (handle.value === "" || password === "" || password !== 'travel2020') {
-    //   logInError.classList.remove('hidden');
-    // };
-
-
-    logInPage.classList.toggle('hidden');
-    mainHome.classList.toggle('hidden');
+    if (password.value === 'travel2020' && (!isNaN(travelerID))) {
+      logInPage.classList.toggle('hidden');
+      mainHome.classList.toggle('hidden');
+    } else if (handle.value === "" || password === "" || password !== 'travel2020') {
+      logInError.classList.remove('hidden');
+    };
   },
 
   getCurrentTraveler() {
@@ -72,8 +68,8 @@ const domUpdates = {
       domUpdates.totalSpent(data.currentTraveler.id, currentDate);
       domUpdates.displayAllTrips(data.currentTraveler.id, currentDate);
     });
-    homeButton.classList.toggle('hidden');
-    addTripButton.classList.toggle('hidden');
+    homeButton.classList.remove('hidden');
+    addTripButton.classList.remove('hidden');
   },
 
   displayAllTrips(userID, date) {
@@ -214,3 +210,4 @@ const domUpdates = {
 }
 
 export default domUpdates;
+
