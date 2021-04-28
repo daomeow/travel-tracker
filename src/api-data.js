@@ -64,6 +64,7 @@ const postData = (tripRepo, newTrip) => {
   })
     .then(response => response.json())
     .then(data => domUpdates.reloadTraveler(travelerID))
+    // from the data 
     .catch(err => displayErrorMessage(err));
     tripRepo.allTrips.push(newTripData);
 };
