@@ -1,6 +1,6 @@
 # Travel Tracker
 Simple overview of use/purpose.
-![selfCare0](./assets/selfCare0.png)
+![selfCare0](./images/login-page.png)
 ![Alt Text](https://media.giphy.com/media/J9jX6JqnTlgOJd8qLI/giphy.gif)
 
 ---
