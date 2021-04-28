@@ -1,7 +1,7 @@
 import './css/base.scss';
 import domUpdates from './domUpdates.js';                  
 import './images/turing-logo.png'
-import './images/boulder.jpg'
+import './images/login-page.png'
 import './images/faces.jpg'
 
 const homeButton = document.getElementById('homeButton');
