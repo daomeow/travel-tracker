@@ -9,8 +9,8 @@ Track, book and calculate all your traveling needs in one place!
 * Username must end in one or two numbers (website locates traveler by their user ID)
 * Password: **travel2020**
 * The homepage displays the current traveler’s past, present, future and pending travel plans
-* Click Trip Request to `POST` a new trip, with all inputs filled in
-* Travelers can calculate trip costs to submitting the form  
+* Navigate to Trip Request to `POST`, a new trip, after all inputs are filled in
+* Travelers can calculate trip costs prior to submitting their form  
 ---
 ## Goals and Objectives
 
