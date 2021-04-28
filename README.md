@@ -9,6 +9,13 @@ Simple overview of use/purpose.
 An in-depth paragraph about your project and overview of use.
 
 ---
+## Goals and Objectives
+
+* Use OOP to drive the design of the application and the code
+* Work with an API to send and receive data
+* Solidify the code review process
+* Create a robust test suite that thoroughly tests all functionality of a client-side application
+---
 
 ## Setup
 - Fork this project to your own Github account
