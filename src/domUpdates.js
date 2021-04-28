@@ -43,6 +43,7 @@ const domUpdates = {
   getCurrentTraveler() {
     const userInput = handle.value.split(/([0-9]+)/);
     const travelerID = parseInt(userInput[1]);
+    console.log(travelerID)
     return travelerID;
   },
 
@@ -50,30 +51,30 @@ const domUpdates = {
     userName.innerHTML = traveler.name.split(' ')[0]; 
   },
 
-  totalSpent(traveler, date) {
-    apiData()
-    .then(data => {
-      const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
-      const total = document.querySelector('#totalSpent');
-      const sum = tripRepo.calculateYearlyExpenditure(traveler, date);
-      annualTotal.innerHTML = sum;
-    });
-  },
+  // totalSpent(traveler, date) {
+  //   apiData(userID)
+  //   .then(data => {
+  //     const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
+  //     const total = document.querySelector('#totalSpent');
+  //     const sum = tripRepo.calculateYearlyExpenditure(traveler, date);
+  //     annualTotal.innerHTML = sum;
+  //   });
+  // },
 
-  loadTraveler() {
-    domUpdates.validateUserLogIn();
-    apiData()
-    .then(data => {
-      domUpdates.greetUser(data.currentTraveler);
-      domUpdates.totalSpent(data.currentTraveler.id, currentDate);
-      domUpdates.displayAllTrips(data.currentTraveler.id, currentDate);
-    });
-    homeButton.classList.remove('hidden');
-    addTripButton.classList.remove('hidden');
-  },
+  // loadTraveler(userID) {
+  //   domUpdates.validateUserLogIn();
+  //   apiData(userID)
+  //   .then(data => {
+  //     domUpdates.greetUser(data.currentTraveler);
+  //     domUpdates.totalSpent(data.currentTraveler.id, currentDate);
+  //     domUpdates.displayAllTrips(data.currentTraveler.id, currentDate);
+  //   });
+  //   homeButton.classList.remove('hidden');
+  //   addTripButton.classList.remove('hidden');
+  // },
 
   displayAllTrips(userID, date) {
-    apiData()
+    apiData(userID)
     .then(data => {
       const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
       const pastTrips = tripRepo.findUserPastTrips(userID, date);
@@ -125,7 +126,7 @@ const domUpdates = {
   },
 
   addNewTrip() {
-    apiData()
+    apiData(userID)
     .then(data => {
       const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
       const currentTraveler = new Traveler(data.currentTraveler);
@@ -172,6 +173,10 @@ const domUpdates = {
     } else {
       domUpdates.calculateNewTripCost()
     }
+
+
+    const currentTraveler = domUpdates.getCurrentTraveler()
+    return apiData(currentTraveler)
   },
 
   clearLogInError(event) {
