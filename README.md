@@ -15,6 +15,12 @@ An in-depth paragraph about your project and overview of use.
 * Work with an API to send and receive data
 * Solidify the code review process
 * Create a robust test suite that thoroughly tests all functionality of a client-side application
+
+---
+## Technologies
+*Fetch API
+* Sass 
+* Mocha and Chai 
 ---
 
 ## Setup
