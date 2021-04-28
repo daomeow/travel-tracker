@@ -3,10 +3,11 @@ import domUpdates from './domUpdates.js';
 import './images/turing-logo.png'
 import './images/login-page.png'
 import './images/faces.jpg'
-import {apiData, postData} from './api-data.js';
+// import {apiData, postData} from './api-data.js';
 import Traveler from './traveler';
 import Trip from './trip';
 import TripRepo from './trip-repo';
+import { apiCalls } from './api-data'
 
 const homeButton = document.getElementById('homeButton');
 const formButton = document.getElementById('formButton');
@@ -35,52 +36,30 @@ const logInError = document.querySelector('.error-message');
 formButton.addEventListener('click', domUpdates.displayPage);
 homeButton.addEventListener('click', domUpdates.displayPage);
 bookTripButton.addEventListener('click', domUpdates.addNewTrip);
-// bookTripButton.addEventListener('click', bookNewTrip);
 costButton.addEventListener('click', domUpdates.displayFormErrors);
-// logInButton.addEventListener('click', loadTraveler);
-logInButton.addEventListener('click', domUpdates.loadTraveler);
-handle.addEventListener('keydown', function(event) {
-  domUpdates.clearLogInError(event);
-});
-password.addEventListener('keydown', function(event) {
-  domUpdates.clearLogInError(event);
-});
-dateError.addEventListener('keydown', function(event) {
-  domUpdates.clearLogInError(event);
-});
-durationError.addEventListener('keydown', function(event) {
-  domUpdates.clearLogInError(event);
-});
-numberOfTravelersError.addEventListener('keydown', function(event) {
-  domUpdates.clearLogInError(event);
-});
-destinationError.addEventListener('keydown', function(event) {
-  domUpdates.clearLogInError(event);
-});
+// logInButton.addEventListener('click', domUpdates.loadTraveler);
+logInButton.addEventListener('click', validateUserLogIn);
 
 
 
-
-function generateFetchData() {
-  function fetchDataForTraveler() {
-    Promise.all([apiCalls.fetchAllData(`travelers`), apiCalls.fetchAllData(`trips`), 
-    apiCalls.fetchAllData(`destinations`), apiCalls.currentTraveler(`travelers/${currUserID}`)])
-      .then(data => {
-        domUpdates.assignData(data)
-      })
-  }
-}
-
-function generateSingleTravelerAPI(id) {
-  apiData.generateCurrentTraveler(id)
-  .then(data => {
-    // console.log(data, 'checking!!!');
-    currentTraveler = new Traveler(data);
-    domUpdates.greetUser(currentTraveler);
-    generateFetchData();
-  })
-}
-
+// handle.addEventListener('keydown', function(event) {
+//   domUpdates.clearLogInError(event);
+// });
+// password.addEventListener('keydown', function(event) {
+//   domUpdates.clearLogInError(event);
+// });
+// dateError.addEventListener('keydown', function(event) {
+//   domUpdates.clearLogInError(event);
+// });
+// durationError.addEventListener('keydown', function(event) {
+//   domUpdates.clearLogInError(event);
+// });
+// numberOfTravelersError.addEventListener('keydown', function(event) {
+//   domUpdates.clearLogInError(event);
+// });
+// destinationError.addEventListener('keydown', function(event) {
+//   domUpdates.clearLogInError(event);
+// });
 
 
 function validateUserLogIn() {
@@ -96,23 +75,36 @@ function validateUserLogIn() {
 
   logInPage.classList.toggle('hidden');
   mainHome.classList.toggle('hidden');
-
+  generateFetchData(travelerID); 
 }
+
+
+
+function generateFetchData(currUserID) {
+  Promise.all([apiCalls.fetchAllData(`travelers`), apiCalls.fetchAllData(`trips`), 
+    apiCalls.fetchAllData(`destinations`), apiCalls.currentTraveler(`travelers/${currUserID}`)])
+      .then(data => {
+        domUpdates.assignData(data)
+      })
+}
+
+
+
 
 function getCurrentTraveler() {
   const userInput = handle.value.split(/([0-9]+)/);
   const travelerID = parseInt(userInput[1]);
-  generateSingleTravelerAPI(travelerID)
+  return travelerID;
 }
 
 // function loadTraveler() {
 //   validateUserLogIn();
 // }
 
-function bookNewTrip(tripInfo, currentTraveler) {
-  domUpdates.addNewTrip(tripInfo, currentTraveler)
-  // generateAPIData()
-}
+// function bookNewTrip(tripInfo, currentTraveler) {
+//   domUpdates.addNewTrip(tripInfo, currentTraveler)
+//   // generateAPIData()
+// }
 
 
 

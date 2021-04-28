@@ -9,7 +9,7 @@ describe('Trip Repo', () => {
 
   beforeEach(() => {
     date = "2020/5/04";
-    tripRepo = new TripRepo(fakeTrips, fakeDestinations);
+    tripRepo = new TripRepo(fakeTrips.trips, fakeDestinations.destinations);
   })
 
   it('should be an instance of Trip', () => {

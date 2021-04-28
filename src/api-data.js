@@ -1,17 +1,21 @@
 import domUpdates from "./domUpdates";
 // const travelerID = (Math.floor(Math.random() * 49) + 1);
+const path = 'http://localhost:3001/api/v1/';
+
 
 
 export const apiCalls = {
 
-  displayErrorMessage = (err) => {
+  displayErrorMessage(err) {
     const errorField = document.querySelector('.js-error');
-    const message = err.message === 'Failed to fetch' ?
-      'Something went wrong. Please check your internet connection' : err.message;
+    const message = err.message === 
+      'Failed to fetch' ?
+      'Something went wrong. Please check your internet connection' 
+      : err.message;
     errorField.innerText = message;
   },
 
-  checkForError = response => {
+  checkForError(response) {
     if (!response.ok) {
         throw new Error('Something went wrong, please try again.');
     } else {
@@ -19,46 +23,47 @@ export const apiCalls = {
     }
   },
 
-
-
   fetchAllData(endpath) {
     return fetch(`${path}${endpath}`)
       .then(apiCalls.checkForError)
       .then(data => {
-        console.log(`${endpath}`,data[endpath]);
+        // console.log(`${endpath}`,data[endpath]);
         return data[endpath];
       })
-      .catch(err => apiData.displayErrorMessage(err));
+      .catch(err => apiCalls.displayErrorMessage(err));
   },
+
+  currentTraveler(endpath) {
+    return fetch(`${path}${endpath}`)
+      .then(apiCalls.checkForError)
+      .then(data => data)
+      .catch(err => apiCalls.displayErrorMessage(err));
+  },
+
+  postData(newTrip) {
+    fetch('http://localhost:3001/api/v1/trips', {
+    method: 'POST',
+    body: JSON.stringify({
+      id: newTrip.id, 
+      userID: newTrip.userID,
+      destinationID: newTrip.destinationID,
+      travelers: newTrip.travelers, 
+      date: newTrip.date, 
+      duration: newTrip.duration, 
+      status: newTrip.status, 
+      suggestedActivities: newTrip.suggestedActivities
+    }),
+    headers: {
+      "Content-Type": "application/json"
+    }    
+  })
+    .then(response => response.json())
+    .catch(err => apiCalls.displayErrorMessage(err));
+    // tripRepo.allTrips.push(newTripData);
+  }
 }
 
 
-// const apiData = {
-//   generateCurrentTraveler(travelerID) {
-//     return fetch(`http://localhost:3001/api/v1/travelers/${travelerID}`)
-//       .then(response => response.json())
-//       .catch(err => displayErrorMessage(err)); 
-
-//   },
-
-//   generateAllTravelers() {
-//     return fetch('http://localhost:3001/api/v1/travelers')
-//       .then(response => response.json())
-//       .catch(err => displayErrorMessage(err));
-//   },
-
-//   generateAllTrips() {
-//     return fetch('http://localhost:3001/api/v1/trips')
-//       .then(response => response.json())
-//       .catch(err => displayErrorMessage(err)); 
-//   },
-
-//   generateAllDestinations() {
-//     return fetch('http://localhost:3001/api/v1/destinations')
-//       .then(response => response.json())
-//       .catch(err => displayErrorMessage(err));
-//   },
-// };
 
 
 // const apiData = (travelerID) => {
@@ -90,31 +95,35 @@ export const apiCalls = {
 //   .catch(err => displayErrorMessage(err));
 // };
 
-const postData = (newTrip) => {
-  const newTripData = fetch('http://localhost:3001/api/v1/trips', {
-    method: 'POST',
-    body: JSON.stringify({
-      id: newTrip.id, 
-      userID: newTrip.userID,
-      destinationID: newTrip.destinationID,
-      travelers: newTrip.travelers, 
-      date: newTrip.date, 
-      duration: newTrip.duration, 
-      status: newTrip.status, 
-      suggestedActivities: newTrip.suggestedActivities
-    }),
-    headers: {
-      "Content-Type": "application/json"
-    }    
-  })
-    .then(response => response.json())
-    .then(data => domUpdates.reloadTraveler(travelerID))
-    // from the data 
-    .catch(err => displayErrorMessage(err));
-    // tripRepo.allTrips.push(newTripData);
-};
 
-export {
-  apiCalls,
-  postData
-};
+
+
+//GOOD 
+// const postData = (newTrip) => {
+//   const newTripData = fetch('http://localhost:3001/api/v1/trips', {
+//     method: 'POST',
+//     body: JSON.stringify({
+//       id: newTrip.id, 
+//       userID: newTrip.userID,
+//       destinationID: newTrip.destinationID,
+//       travelers: newTrip.travelers, 
+//       date: newTrip.date, 
+//       duration: newTrip.duration, 
+//       status: newTrip.status, 
+//       suggestedActivities: newTrip.suggestedActivities
+//     }),
+//     headers: {
+//       "Content-Type": "application/json"
+//     }    
+//   })
+//     .then(response => response.json())
+//     .then(data => domUpdates.reloadTraveler(travelerID))
+//     // from the data 
+//     .catch(err => displayErrorMessage(err));
+//     // tripRepo.allTrips.push(newTripData);
+// };
+
+// export {
+//   apiCalls,
+//   postData
+// };
