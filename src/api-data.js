@@ -19,7 +19,6 @@ const checkForError = response => {
 
 
 const apiData = {
-  
   generateCurrentTraveler(travelerID) {
     return fetch(`http://localhost:3001/api/v1/travelers/${travelerID}`)
       .then(response => response.json())

@@ -26,40 +26,37 @@ const numberOfTravelersError = document.querySelector('.num-travelers-message');
 const destinationError = document.querySelector('.destination-message');
 const userName = document.getElementById('userName');
 const annualTotal = document.getElementById('totalSpent');
+// const total = document.querySelector('#totalSpent');
 const homeButton = document.querySelector('.home');
 const addTripButton = document.querySelector('.document');
 
 const domUpdates = {
-  validateUserLogIn() {
-    const travelerID = domUpdates.getCurrentTraveler();
-    if (password.value === 'travel2020' && (!isNaN(travelerID))) {
-      logInPage.classList.toggle('hidden');
-      mainHome.classList.toggle('hidden');
-    } else if (handle.value === "" || password === "" || password !== 'travel2020') {
-      logInError.classList.remove('hidden');
-    };
-  },
+  // validateUserLogIn() {
+  //   const travelerID = domUpdates.getCurrentTraveler();
+  //   if (password.value === 'travel2020' && (!isNaN(travelerID))) {
+  //     logInPage.classList.toggle('hidden');
+  //     mainHome.classList.toggle('hidden');
+  //   } else if (handle.value === "" || password === "" || password !== 'travel2020') {
+  //     logInError.classList.remove('hidden');
+  //   };
+  // },
 
-  getCurrentTraveler() {
-    const userInput = handle.value.split(/([0-9]+)/);
-    const travelerID = parseInt(userInput[1]);
-    console.log(travelerID)
-    return travelerID;
-  },
+  // getCurrentTraveler() {
+  //   const userInput = handle.value.split(/([0-9]+)/);
+  //   const travelerID = parseInt(userInput[1]);
+  //   console.log(travelerID)
+  //   return travelerID;
+  // },
 
   greetUser(traveler) {
     userName.innerHTML = traveler.name.split(' ')[0]; 
   },
 
-  // totalSpent(traveler, date) {
-  //   apiData(userID)
-  //   .then(data => {
-  //     const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
-  //     const total = document.querySelector('#totalSpent');
-  //     const sum = tripRepo.calculateYearlyExpenditure(traveler, date);
-  //     annualTotal.innerHTML = sum;
-  //   });
-  // },
+  totalSpent(tripInfo, traveler, date) {
+    const sum = tripInfo.calculateYearlyExpenditure(traveler, date);
+    annualTotal.innerHTML = sum;
+},
+
 
   // loadTraveler(userID) {
   //   domUpdates.validateUserLogIn();
