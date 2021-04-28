@@ -1,7 +1,7 @@
 # Travel Tracker
 Simple overview of use/purpose.
-![Log in screenshot](./../images/login-page.png)
-![Alt Text](https://media.giphy.com/media/J9jX6JqnTlgOJd8qLI/giphy.gif)
+
+![Responsive GIF](https://media.giphy.com/media/DrCljhWG1TJQtEZtoQ/giphy.gif)
 
 ---
 
