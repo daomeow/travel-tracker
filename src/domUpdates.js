@@ -30,12 +30,16 @@ const annualTotal = document.getElementById('totalSpent');
 const domUpdates = {
   validateUserLogIn() {
     const travelerID = domUpdates.getCurrentTraveler();
-    if (password.value === 'travel2020' && (!isNaN(travelerID))) {
-      logInPage.classList.toggle('hidden');
-      mainHome.classList.toggle('hidden');
-    } else if (handle.value === "" || password === "" || password !== 'travel2020') {
-      logInError.classList.remove('hidden');
-    };
+    // if (password.value === 'travel2020' && (!isNaN(travelerID))) {
+    //   logInPage.classList.toggle('hidden');
+    //   mainHome.classList.toggle('hidden');
+    // } else if (handle.value === "" || password === "" || password !== 'travel2020') {
+    //   logInError.classList.remove('hidden');
+    // };
+
+
+    logInPage.classList.toggle('hidden');
+    mainHome.classList.toggle('hidden');
   },
 
   getCurrentTraveler() {
