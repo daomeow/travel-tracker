@@ -6,6 +6,7 @@
     align-items: center;
     height: 63rem;
     background-image: url("../images/faces.jpg");
+    // opacity: 0.5;
   }
 
   .welcome {
@@ -63,15 +64,6 @@
   }
 }
 
-
-// /* ***** iPad & Desktop ***** */ 
-// @media only screen and (min-device-width: 768) {
-//   .login {
-//     height: 35rem;
-//   }
-
-// }
-
 /* ***** iPad & Desktop ***** */ 
 @media only screen and (min-width: 2500px) {
   .login {
@@ -85,5 +77,4 @@
   .login-message {
     font-size: 2.5rem;
   }
-
 }

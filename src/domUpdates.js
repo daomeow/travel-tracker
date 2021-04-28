@@ -26,6 +26,8 @@ const numberOfTravelersError = document.querySelector('.num-travelers-message');
 const destinationError = document.querySelector('.destination-message');
 const userName = document.getElementById('userName');
 const annualTotal = document.getElementById('totalSpent');
+const homeButton = document.querySelector('.home');
+const addTripButton = document.querySelector('.document');
 
 const domUpdates = {
   validateUserLogIn() {
@@ -66,6 +68,8 @@ const domUpdates = {
       domUpdates.totalSpent(data.currentTraveler.id, currentDate);
       domUpdates.displayAllTrips(data.currentTraveler.id, currentDate);
     });
+    homeButton.classList.remove('hidden');
+    addTripButton.classList.remove('hidden');
   },
 
   displayAllTrips(userID, date) {
@@ -105,6 +109,7 @@ const domUpdates = {
   displayPage() {
     mainHome.classList.toggle('hidden');
     userForm.classList.toggle('hidden');
+    domUpdates.clearForm();
   },
 
   retrieveNewTripData() {
@@ -148,7 +153,7 @@ const domUpdates = {
         const destination = trip.identifyDestination(tripID);
         const total = trip.calculateCost(destination);
         formTotal.innerHTML = total;
-        estimatedCost.classList.toggle('hidden');
+        estimatedCost.classList.remove('hidden');
       })
   },
 
@@ -189,10 +194,20 @@ const domUpdates = {
       const traveler = newTraveler.findCurrentTraveler(userID);
       userName.innerHTML = traveler.name.split(' ')[0]; 
     })
+  },
+
+  clearForm() {
+    formDate.value = "";
+    formDuration.value = "";
+    numTravelers.value = "";
+    formDestination.value = "";
+    estimatedCost.classList.add('hidden');
+    dateError.classList.add('hidden');
+    durationError.classList.add('hidden');
+    numberOfTravelersError.classList.add('hidden');
+    destinationError.classList.add('hidden');
   }
 }
 
 export default domUpdates;
-
-
 
