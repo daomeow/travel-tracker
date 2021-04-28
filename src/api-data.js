@@ -1,49 +1,64 @@
 import domUpdates from "./domUpdates";
 // const travelerID = (Math.floor(Math.random() * 49) + 1);
 
-const displayErrorMessage = (err) => {
-  const errorField = document.querySelector('.js-error');
-  const message = err.message === 'Failed to fetch' ?
-    'Something went wrong. Please check your internet connection' : err.message;
-  errorField.innerText = message;
+
+export const apiCalls = {
+
+  displayErrorMessage = (err) => {
+    const errorField = document.querySelector('.js-error');
+    const message = err.message === 'Failed to fetch' ?
+      'Something went wrong. Please check your internet connection' : err.message;
+    errorField.innerText = message;
+  },
+
+  checkForError = response => {
+    if (!response.ok) {
+        throw new Error('Something went wrong, please try again.');
+    } else {
+        return response.json();
+    }
+  },
+
+
+
+  fetchAllData(endpath) {
+    return fetch(`${path}${endpath}`)
+      .then(apiCalls.checkForError)
+      .then(data => {
+        console.log(`${endpath}`,data[endpath]);
+        return data[endpath];
+      })
+      .catch(err => apiData.displayErrorMessage(err));
+  },
 }
 
-const checkForError = response => {
-  if (!response.ok) {
-      throw new Error('Something went wrong, please try again.');
-  } else {
-      return response.json();
-  }
-};
 
+// const apiData = {
+//   generateCurrentTraveler(travelerID) {
+//     return fetch(`http://localhost:3001/api/v1/travelers/${travelerID}`)
+//       .then(response => response.json())
+//       .catch(err => displayErrorMessage(err)); 
 
+//   },
 
-const apiData = {
-  generateCurrentTraveler(travelerID) {
-    return fetch(`http://localhost:3001/api/v1/travelers/${travelerID}`)
-      .then(response => response.json())
-      .catch(err => displayErrorMessage(err)); 
+//   generateAllTravelers() {
+//     return fetch('http://localhost:3001/api/v1/travelers')
+//       .then(response => response.json())
+//       .catch(err => displayErrorMessage(err));
+//   },
 
-  },
+//   generateAllTrips() {
+//     return fetch('http://localhost:3001/api/v1/trips')
+//       .then(response => response.json())
+//       .catch(err => displayErrorMessage(err)); 
+//   },
 
-  generateAllTravelers() {
-    return fetch('http://localhost:3001/api/v1/travelers')
-      .then(response => response.json())
-      .catch(err => displayErrorMessage(err));
-  },
-
-  generateAllTrips() {
-    return fetch('http://localhost:3001/api/v1/trips')
-      .then(response => response.json())
-      .catch(err => displayErrorMessage(err)); 
-  },
-
-  generateAllDestinations() {
-    return fetch('http://localhost:3001/api/v1/destinations')
-      .then(response => response.json())
-      .catch(err => displayErrorMessage(err));
-  },
-};
+//   generateAllDestinations() {
+//     return fetch('http://localhost:3001/api/v1/destinations')
+//       .then(response => response.json())
+//       .catch(err => displayErrorMessage(err));
+//   },
+// };
 
 
 // const apiData = (travelerID) => {
@@ -75,7 +90,7 @@ const apiData = {
 //   .catch(err => displayErrorMessage(err));
 // };
 
-const postData = (tripRepo, newTrip) => {
+const postData = (newTrip) => {
   const newTripData = fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
     body: JSON.stringify({
@@ -96,10 +111,10 @@ const postData = (tripRepo, newTrip) => {
     .then(data => domUpdates.reloadTraveler(travelerID))
     // from the data 
     .catch(err => displayErrorMessage(err));
-    tripRepo.allTrips.push(newTripData);
+    // tripRepo.allTrips.push(newTripData);
 };
 
 export {
-  apiData,
+  apiCalls,
   postData
 };

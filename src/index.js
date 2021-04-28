@@ -24,16 +24,21 @@ const currentDate = "2020/5/11";
 let currentTraveler, currentTravelerTrips, currentTravelerDestinations,
   allDestinationsData, allTripsData, tripObject, newTravelerTrip, plannedTrip, allTravelersData;
 
+let tripRepo;
+
 const logInPage = document.getElementById('logInPage');
 const mainHome = document.querySelector('.main-home');
 const logInError = document.querySelector('.error-message');
 
 
+
 formButton.addEventListener('click', domUpdates.displayPage);
 homeButton.addEventListener('click', domUpdates.displayPage);
 bookTripButton.addEventListener('click', domUpdates.addNewTrip);
+// bookTripButton.addEventListener('click', bookNewTrip);
 costButton.addEventListener('click', domUpdates.displayFormErrors);
-logInButton.addEventListener('click', loadTraveler);
+// logInButton.addEventListener('click', loadTraveler);
+logInButton.addEventListener('click', domUpdates.loadTraveler);
 handle.addEventListener('keydown', function(event) {
   domUpdates.clearLogInError(event);
 });
@@ -53,30 +58,26 @@ destinationError.addEventListener('keydown', function(event) {
   domUpdates.clearLogInError(event);
 });
 
-function generateAPIData(id) {
-  const fetches = [apiData.generateAllTravelers(), apiData.generateAllTrips(), apiData.generateAllDestinations()]
-  Promise.all(fetches)
-  .then(data => {
-    allTravelersData = data[0];
-    allTripsData = data[1];
-    allDestinationsData = data[2];
-
-    const tripRepo = new TripRepo(allTripsData, allDestinationsData)
 
 
-    domUpdates.totalSpent(tripRepo, currentTraveler.id, currentDate)
 
-
-  });
+function generateFetchData() {
+  function fetchDataForTraveler() {
+    Promise.all([apiCalls.fetchAllData(`travelers`), apiCalls.fetchAllData(`trips`), 
+    apiCalls.fetchAllData(`destinations`), apiCalls.currentTraveler(`travelers/${currUserID}`)])
+      .then(data => {
+        domUpdates.assignData(data)
+      })
+  }
 }
 
 function generateSingleTravelerAPI(id) {
   apiData.generateCurrentTraveler(id)
   .then(data => {
+    // console.log(data, 'checking!!!');
     currentTraveler = new Traveler(data);
-    console.log(currentTraveler)
     domUpdates.greetUser(currentTraveler);
-    generateAPIData();
+    generateFetchData();
   })
 }
 
@@ -104,27 +105,99 @@ function getCurrentTraveler() {
   generateSingleTravelerAPI(travelerID)
 }
 
-function loadTraveler(userID) {
-  validateUserLogIn();
-  console.log(currentTraveler)
-  // generateSingleTravelerAPI(userID);
-  // console.log(currentTraveler)
-  // domUpdates.greetUser(currentTraveler);
+// function loadTraveler() {
+//   validateUserLogIn();
+// }
 
-  //   domUpdates.totalSpent(data.currentTraveler.id, currentDate);
-
-  // domUpdates.displayAllTrips(userID, currentDate);
-
-  // homeButton.classList.remove('hidden');
-  // addTripButton.classList.remove('hidden');
+function bookNewTrip(tripInfo, currentTraveler) {
+  domUpdates.addNewTrip(tripInfo, currentTraveler)
+  // generateAPIData()
 }
 
-// function totalSpent(tripInfo) {
 
-//     const tripRepo = new TripRepo(data.allTrips, data.allDestinations);
-//     const total = document.querySelector('#totalSpent');
-//     const sum = tripRepo.calculateYearlyExpenditure(traveler, date);
-//     annualTotal.innerHTML = sum;
+
+//BEFORE 
+
+// function generateFetchData() {
+//   const fetches = [apiData.generateAllTravelers(), apiData.generateAllTrips(), apiData.generateAllDestinations()]
+//   Promise.all(fetches)
+//   .then(data => {
+//     allTravelersData = data[0];
+//     allTripsData = data[1];
+//     allDestinationsData = data[2];
+
+//     const tripRepo = new TripRepo(allTripsData, allDestinationsData);
+
+//     // filterAllTripsForTraveler(allTripsData)
+//     domUpdates.totalSpent(tripRepo, currentTraveler.id, currentDate);
+//     domUpdates.displayAllTrips(tripRepo, currentTraveler.id, currentDate);
+
+//     // bookNewTrip(tripRepo, currentTraveler.id)
+//     domUpdates.addNewTrip(tripRepo, currentTraveler)
+//   });
+// }
+
+// function generateSingleTravelerAPI(id) {
+//   apiData.generateCurrentTraveler(id)
+//   .then(data => {
+//     // console.log(data, 'checking!!!');
+//     currentTraveler = new Traveler(data);
+//     domUpdates.greetUser(currentTraveler);
+//     generateFetchData();
+//   })
+// }
+
+
+
+// function validateUserLogIn() {
+//   const travelerID = getCurrentTraveler();
+//   // if (password.value === 'travel2020' && (!isNaN(travelerID))) {
+
+//   //   if ((!isNaN(travelerID))) {
+//   //   logInPage.classList.toggle('hidden');
+//   //   mainHome.classList.toggle('hidden');
+//   // } else if (handle.value === "" || password === "" || password !== 'travel2020') {
+//   //   logInError.classList.remove('hidden');
+//   // };
+
+//   logInPage.classList.toggle('hidden');
+//   mainHome.classList.toggle('hidden');
 
 // }
+
+// function getCurrentTraveler() {
+//   const userInput = handle.value.split(/([0-9]+)/);
+//   const travelerID = parseInt(userInput[1]);
+//   generateSingleTravelerAPI(travelerID)
+// }
+
+// function loadTraveler() {
+//   validateUserLogIn();
+// }
+
+// function bookNewTrip(tripInfo, currentTraveler) {
+//   domUpdates.addNewTrip(tripInfo, currentTraveler)
+//   // generateAPIData()
+// }
+
+
+// // function generateAPIData() {
+// //   const fetches = [apiData.generateAllTravelers(), apiData.generateAllTrips(), apiData.generateAllDestinations()]
+// //   Promise.all(fetches)
+// //   .then(data => {
+// //     allTravelersData = data[0];
+// //     allTripsData = data[1];
+// //     allDestinationsData = data[2];
+
+// //   const tripRepo = new TripRepo(allTripsData, allDestinationsData)
+
+// //     console.log(tripRepo)
+// //     domUpdates.addNewTrip(tripRepo, currentTraveler.id)
+// //   });
+// // }
+
+
+
+
+
 
