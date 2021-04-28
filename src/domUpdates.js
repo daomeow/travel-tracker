@@ -26,6 +26,8 @@ const numberOfTravelersError = document.querySelector('.num-travelers-message');
 const destinationError = document.querySelector('.destination-message');
 const userName = document.getElementById('userName');
 const annualTotal = document.getElementById('totalSpent');
+const homeButton = document.querySelector('.home');
+const addTripButton = document.querySelector('.document');
 
 const domUpdates = {
   validateUserLogIn() {
@@ -70,6 +72,8 @@ const domUpdates = {
       domUpdates.totalSpent(data.currentTraveler.id, currentDate);
       domUpdates.displayAllTrips(data.currentTraveler.id, currentDate);
     });
+    homeButton.classList.toggle('hidden');
+    addTripButton.classList.toggle('hidden');
   },
 
   displayAllTrips(userID, date) {
