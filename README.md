@@ -18,9 +18,11 @@ An in-depth paragraph about your project and overview of use.
 
 ---
 ## Technologies
-*Fetch API
+* Fetch API
+* Webpack
 * Sass 
-* Mocha and Chai 
+* Mocha and Chai
+* Javascript 
 ---
 
 ## Setup
