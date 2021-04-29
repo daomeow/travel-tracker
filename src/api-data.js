@@ -40,7 +40,7 @@ export const apiCalls = {
       .catch(err => apiCalls.displayErrorMessage(err));
   },
 
-  postData(newTrip) {
+  postData(tripRepo, newTrip, id, date) {
     fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
     body: JSON.stringify({
@@ -58,6 +58,12 @@ export const apiCalls = {
     }    
   })
     .then(response => response.json())
+    // .then(tripRepo.allTrips.push(newTripData))
+    .then(data => {
+      tripRepo.allTrips.push(data)
+      domUpdates.displayAllTrips(id, date)
+    })
+
     .catch(err => apiCalls.displayErrorMessage(err));
     // tripRepo.allTrips.push(newTripData);
   }
