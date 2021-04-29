@@ -31,7 +31,7 @@ const annualTotal = document.getElementById('totalSpent');
 const homeButton = document.querySelector('.home');
 const addTripButton = document.querySelector('.document');
 
-let allTravelersData, allTripsData,allDestinationsData, tripRepo, currentTraveler, currentTravelerData, formData ;
+let allTravelersData, allTripsData,allDestinationsData, tripRepo, currentTraveler, currentTravelerData, formData, currentTrip ;
 
 // const tripRepo = new TripRepo(allTripsData, allDestinationsData)
 // const tripRepo = new TripRepo(allTripsData, allDestinationsData)
@@ -45,7 +45,7 @@ const domUpdates = {
     allDestinationsData = data[2];
     currentTravelerData = data[3];
     tripRepo = new TripRepo(allTripsData, allDestinationsData)
-
+    currentTrip = new Trip(allTripsData, allDestinationsData)
     domUpdates.totalSpent()
     domUpdates.displayAllTrips(currentTravelerData.id, currentDate)
     domUpdates.greetUser(currentTravelerData)
@@ -132,33 +132,36 @@ const domUpdates = {
 
 
 
-  // calculateNewTripCost() {
-  //   apiData()
-  //     .then(data => {
-  //       const userInput = domUpdates.retrieveNewTripData();
-  //       const trip = new Trip(userInput, data.allDestinations);
-  //       const tripID = parseInt(userInput.destinationID)
-  //       const destination = trip.identifyDestination(tripID);
-  //       const total = trip.calculateCost(destination);
-  //       formTotal.innerHTML = total;
-  //       estimatedCost.classList.remove('hidden');
-  //     })
-  // },
-  //   displayFormErrors() {
-  //   if (formDate.value === "") {
-  //     dateError.classList.remove('hidden');
-  //     return true;
-  //   } else if (formDuration.value === "") {
-  //     durationError.classList.remove('hidden');
-  //     return true;
-  //   } else if (numTravelers.value === "") {
-  //     numberOfTravelersError.classList.remove('hidden');
-  //     return true;
-  //   } else if (formDestination.value === "") {
-  //     destinationError.classList.remove('hidden');
-  //   } else {
-  //     domUpdates.calculateNewTripCost()
-  //   }
+  calculateNewTripCost() {
+    // apiData()
+    //   .then(data => {
+        const userInput = domUpdates.retrieveNewTripData();
+        // const trip = new Trip(userInput, data.allDestinations);
+        const tripID = userInput.destinationID
+        const destination = currentTrip.identifyDestination(allDestinationsData,tripID);
+        console.log(destination)
+        const total = currentTrip.calculateCost(destination, userInput.duration, userInput.travelers);
+        console.log(total)
+        formTotal.innerHTML = total;
+        estimatedCost.classList.remove('hidden');
+      // })
+  },
+    displayFormErrors() {
+    if (formDate.value === "") {
+      dateError.classList.remove('hidden');
+      return true;
+    } else if (formDuration.value === "") {
+      durationError.classList.remove('hidden');
+      return true;
+    } else if (numTravelers.value === "") {
+      numberOfTravelersError.classList.remove('hidden');
+      return true;
+    } else if (formDestination.value === "") {
+      destinationError.classList.remove('hidden');
+    } else {
+      domUpdates.calculateNewTripCost()
+    }
+    },
 
 
   //   const currentTraveler = domUpdates.getCurrentTraveler()

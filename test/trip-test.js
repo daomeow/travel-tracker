@@ -15,7 +15,7 @@ describe('Trip', () => {
       alt: 'overview of city buildings with a clear sky'
     }
 
-    trip1 = new Trip(fakeTrips.trips[0], fakeDestinations);
+    trip1 = new Trip(fakeTrips.trips[0], fakeDestinations.destinations);
   })
 
   it('should be an instance of Trip', () => {
