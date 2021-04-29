@@ -36,6 +36,7 @@ const logInError = document.querySelector('.error-message');
 formButton.addEventListener('click', domUpdates.displayPage);
 homeButton.addEventListener('click', domUpdates.displayPage);
 bookTripButton.addEventListener('click', domUpdates.addNewTrip);
+// bookTripButton.addEventListener('click', reloadTraver);
 costButton.addEventListener('click', domUpdates.displayFormErrors);
 // logInButton.addEventListener('click', domUpdates.loadTraveler);
 logInButton.addEventListener('click', validateUserLogIn);
@@ -97,15 +98,11 @@ function getCurrentTraveler() {
   return travelerID;
 }
 
-// function loadTraveler() {
-//   validateUserLogIn();
+// function reloadTraver() {
+//   domUpdates.addNewTrip
+//   const travelerID = getCurrentTraveler();
+//   generateFetchData(travelerID); 
 // }
-
-// function bookNewTrip(tripInfo, currentTraveler) {
-//   domUpdates.addNewTrip(tripInfo, currentTraveler)
-//   // generateAPIData()
-// }
-
 
 
 //BEFORE 

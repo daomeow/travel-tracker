@@ -53,7 +53,6 @@ const domUpdates = {
   },
 
   totalSpent: () => {
-    console.log(tripRepo)
     const sum = tripRepo.calculateYearlyExpenditure(currentTravelerData.id, currentDate);
     annualTotal.innerHTML = sum;
 },
@@ -98,7 +97,7 @@ const domUpdates = {
         });
         homeButton.classList.remove('hidden');
         addTripButton.classList.remove('hidden');      
-      },
+  },
     
   displayPage() {
     mainHome.classList.toggle('hidden');
@@ -124,29 +123,31 @@ const domUpdates = {
     const inputData = domUpdates.retrieveNewTripData();
     mainHome.classList.toggle('hidden');
     userForm.classList.toggle('hidden');
-    apiCalls.postData(inputData);
+    // console.log('heollo')
+    // console.log(currentTraveler)
+    apiCalls.postData(tripRepo, inputData, currentTravelerData.id, currentDate);
 
     allTripsData.push(inputData);
     tripRepo.findUserPendingTrips()
+    // domUpdates.displayAllTrips(currentTraveler.id, currentDate)
   },
 
 
 
   calculateNewTripCost() {
-    // apiData()
-    //   .then(data => {
-        const userInput = domUpdates.retrieveNewTripData();
-        // const trip = new Trip(userInput, data.allDestinations);
-        const tripID = userInput.destinationID
-        const destination = currentTrip.identifyDestination(allDestinationsData,tripID);
-        console.log(destination)
-        const total = currentTrip.calculateCost(destination, userInput.duration, userInput.travelers);
-        console.log(total)
-        formTotal.innerHTML = total;
-        estimatedCost.classList.remove('hidden');
-      // })
+
+    const userInput = domUpdates.retrieveNewTripData();
+    // const trip = new Trip(userInput, data.allDestinations);
+    const tripID = userInput.destinationID
+    const destination = currentTrip.identifyDestination(allDestinationsData,tripID);
+    console.log(destination)
+    const total = currentTrip.calculateCost(destination, userInput.duration, userInput.travelers);
+    console.log(total)
+    formTotal.innerHTML = total;
+    estimatedCost.classList.remove('hidden');
   },
-    displayFormErrors() {
+
+  displayFormErrors() {
     if (formDate.value === "") {
       dateError.classList.remove('hidden');
       return true;
@@ -161,7 +162,9 @@ const domUpdates = {
     } else {
       domUpdates.calculateNewTripCost()
     }
-    },
+  },
+
+
 
 
   //   const currentTraveler = domUpdates.getCurrentTraveler()
