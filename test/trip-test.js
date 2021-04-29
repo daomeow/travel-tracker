@@ -55,17 +55,17 @@ describe('Trip', () => {
   });
 
   it('should identify the destionation', () => {
-    expect(trip1.identifyDestination(1)).to.deep.equal(  {
+    expect(trip1.identifyDestination(fakeDestinations.destinations, 1)).to.deep.equal(  {
       "id": 1,
       "destination": "Lima, Peru",
       "estimatedLodgingCostPerDay": 70,
       "estimatedFlightCostPerPerson": 400,
       "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
       "alt": "overview of city buildings with a clear sky"
-    });currentTravelerTrips
+    });
   });
 
   it('should calculate the total cost of the trip', () => {
-    expect(trip1.calculateCost(destination1)).to.be.equal('1111.00');
+    expect(trip1.calculateCost(destination1, 1, 1)).to.be.equal('517.00');
   });
 });

@@ -12,7 +12,6 @@ class Trip {
   }
 
   identifyDestination(destinationData, tripID) {
-    console.log(this.destination)
     return destinationData.find(location => location.id === tripID);
   }
 

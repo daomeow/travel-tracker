@@ -71,8 +71,6 @@ function validateUserLogIn() {
   generateFetchData(travelerID); 
 }
 
-
-
 function generateFetchData(currUserID) {
   Promise.all([apiCalls.fetchAllData(`travelers`), apiCalls.fetchAllData(`trips`), 
     apiCalls.fetchAllData(`destinations`), apiCalls.currentTraveler(`travelers/${currUserID}`)])
@@ -80,9 +78,6 @@ function generateFetchData(currUserID) {
         domUpdates.assignData(data)
       })
 }
-
-
-
 
 function getCurrentTraveler() {
   const userInput = handle.value.split(/([0-9]+)/);
