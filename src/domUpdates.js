@@ -72,6 +72,10 @@ const domUpdates = {
         const currentTrip = tripRepo.findUserCurrentTrip(userID, date);
         const upcomingTrips = tripRepo.findUserUpcomingTrips(userID, date);
         const pendingTrips = tripRepo.findUserPendingTrips(userID, date);
+        pastSection.innerHTML = '';
+        currentTripSection.innerHTML = ``;
+        upcomingTripSection.innerHTML = ``;
+        pendingTripSection.innerHTML = ``;
         pastTrips.map(trip => {
           pastSection.innerHTML += `
             <p class="destination">${trip.destination}<br><sub class="date">${trip.date}</sub></p>
